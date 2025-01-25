@@ -47,8 +47,7 @@ follow_viewport_enabled = true
 
 [node name="Background" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_vhbbb")
-animation = &"idle"
-frame_progress = 0.37755
+animation = &"flicker"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)

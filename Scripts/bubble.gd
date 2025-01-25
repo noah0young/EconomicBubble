@@ -18,9 +18,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	curEco = gameModel.getEconomy()
 	if curScale < (curEco / 100):
-		curScale += .01
+		curScale += .05
 	if curScale > (curEco / 100):
-		curScale -= .01
-	scale.x = curScale
-	scale.y = curScale
+		curScale -= .05
+	scale.x = curScale + .2
+	scale.y = curScale + .2
 	bubState =  gameModel. getEcoState()
