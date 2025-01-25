@@ -4,21 +4,21 @@ var name
 var text
 var replies
 
-func EcoPrompt(name, text, replies):
+func EcoPrompt(name, text, replies): #constructs object
 	self.name = name
 	self.text = text
 	self.replies = replies
 
-func getName():
+func getName(): # returns object name
 	return self.name
 
-func getText():
+func getText(): # returns object text
 	return self.text
 
-func getReplies():
+func getReplies(): # returns object replies
 	return self.replies
 
-func playPrompt():
+func genPrompt(): # generates prompt
 	return
 	# I am very sick rn due to my own making, so i cant write this out
 	# But basically, it makes the game play the prompt onto the screen
