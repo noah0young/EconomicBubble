@@ -34,11 +34,18 @@ func getDebt() -> float:
 func addEffect(effect : EcoEffect) -> void:
 	effects.append(effect);
 
+func getRoundNotes() -> Array[String]:
+	var noteArray : Array[String] = []
+	for effect in effects:
+		noteArray.append(effect.getNote())
+	return noteArray;
+
 func endRound() -> void:
 	for i in range(effects.size() - 1, -1, -1):
 		print("Applying Effect [" + str(i) + "]");
 		var effect = effects[i]
 		effect.apply(self);
+		effect.nextTurn();
 		if (effect.isDone()):
 			effects.remove_at(i) # do you need to free a resource?
 	economyBalance = max(min(economyBalance, MAX_ECONOMY), MIN_ECONOMY)

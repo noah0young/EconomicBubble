@@ -4,8 +4,6 @@
 
 [node name="Model" type="Node"]
 script = ExtResource("1_fskfq")
-economyBalance = null
-debt = null
 
 [node name="Button" type="Button" parent="."]
 offset_left = 64.0
