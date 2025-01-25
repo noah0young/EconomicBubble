@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=8 format=3 uid="uid://y1gbyju2vja8"]
 
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
 [ext_resource type="Texture2D" uid="uid://bx2c200wffb2a" path="res://Art/BG/BG-2.png" id="2_7eysk"]
 [ext_resource type="Texture2D" uid="uid://bnohdinlwf0dh" path="res://Art/BG/BG-3.png" id="3_1r7um"]
@@ -29,7 +30,7 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 10.0,
+"duration": 12.0,
 "texture": ExtResource("1_nb66x")
 }],
 "loop": true,
@@ -38,7 +39,17 @@ animations = [{
 }]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_expxs")
 
-[node name="Background" type="AnimatedSprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Background" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"idle"
+frame_progress = 0.37755
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+zoom = Vector2(0.6, 0.6)
