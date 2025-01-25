@@ -29,7 +29,7 @@ func endRound() -> void:
 		var effect = effects[i]
 		effect.apply(self);
 		if (effect.isDone()):
-			effects.remove_at(i)
+			effects.remove_at(i) # do you need to free a resource?
 	print("Round End")
 	print("debt:")
 	print(debt);

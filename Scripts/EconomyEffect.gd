@@ -4,9 +4,6 @@ class_name EcoEffect
 ## What is added/removed from your debt
 @export var addToDebt = 0;
 
-## What is added/removed from the economy immediately
-@export var addToEconomy = 0;
-
 ## What is added/removed from the economy on each turn
 ## Where the 0th entry is applied immediately
 ## And the 1st is applied at the end of the next turn
@@ -24,12 +21,7 @@ func _init(addToDebt : int, addToEconomyByRound : Array[float]) -> void:
 func apply(model : GameModel) -> void:
 	if (turnsPassed == 0):
 		model.addToDebt(addToDebt);
-		if (addToEconomy != 0):
-			model.addToEconomy(addToEconomy);
-		else:
-			model.addToEconomy(addToEconomyByRound[turnsPassed]);
-	else:
-		model.addToEconomy(addToEconomyByRound[turnsPassed]);
+	model.addToEconomy(addToEconomyByRound[turnsPassed]);
 	turnsPassed += 1;
 
 func isDone() -> bool:
