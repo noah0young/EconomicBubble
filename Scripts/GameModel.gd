@@ -28,6 +28,9 @@ func getEcoState() -> TypeDefs.EcoState:
 func getDebt() -> float:
 	return debt;
 
+func getEconomy() -> float:
+	return economyBalance;
+
 func addEffect(effect : EcoEffect) -> void:
 	effects.append(effect);
 
