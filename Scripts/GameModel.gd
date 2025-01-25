@@ -1,16 +1,17 @@
 extends Node
 class_name GameModel
 
-const MAX_ECONOMY : float = 100; 
+const MAX_ECONOMY : float = 1000; 
 const MIN_ECONOMY : float = 0; 
 
-const BURSTING_ECO_THRESHOLD : float = 80;
-const GOOD_ECO_THRESHOLD : float = 60;
-const STABLE_ECO_THRESHOLD : float = 40;
-const BAD_ECO_THRESHOLD : float = 20;
+const BURSTING_ECO_THRESHOLD : float = 800;
+const GOOD_ECO_THRESHOLD : float = 600;
+const STABLE_ECO_THRESHOLD : float = 400;
+const BAD_ECO_THRESHOLD : float = 200;
 
-@export var economyBalance : float = 10;
-@export var debt : float = 10;
+@export var economyBalance : float = 500;
+@export var debt : float = 100;
+@export var promptTextBox : RichTextLabel;
 var effects : Array[EcoEffect];
 
 func getEcoState() -> TypeDefs.EcoState:
@@ -53,7 +54,8 @@ func getEcoGOOD() -> float:
 func getEcoBURST() -> float:
 	return BURSTING_ECO_THRESHOLD;
 
-
+func changeTextRich():
+	promptTextBox.add_text(self.text)
 
 func addEffect(effect : EcoEffect) -> void:
 	effects.append(effect);

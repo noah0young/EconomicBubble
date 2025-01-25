@@ -47,9 +47,21 @@ follow_viewport_enabled = true
 
 [node name="Background" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_vhbbb")
-animation = &"idle"
-frame_progress = 0.37755
+animation = &"flicker"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
 zoom = Vector2(0.6, 0.6)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -455.0
+offset_top = -537.0
+offset_right = -179.0
+offset_bottom = -352.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_right = 915.0
+offset_bottom = 195.0
