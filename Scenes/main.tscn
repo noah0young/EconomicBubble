@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=8 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bnohdinlwf0dh" path="res://Art/BG/BG-3.png" id="3_1r7um"]
 [ext_resource type="Texture2D" uid="uid://bqhjiw1gkdcpq" path="res://Art/BG/BG-4.png" id="4_1cvxj"]
 [ext_resource type="Texture2D" uid="uid://bahm6a0b5hayo" path="res://Art/BG/BG-5.png" id="5_wguxr"]
-[ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_vpjyd"]
-[ext_resource type="Script" path="res://Scripts/bubble.gd" id="8_aqqbd"]
-[ext_resource type="Script" path="res://Scripts/GameModel.gd" id="9_sohvm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhbbb"]
 animations = [{
@@ -56,15 +53,3 @@ frame_progress = 0.37755
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
 zoom = Vector2(0.6, 0.6)
-
-[node name="Icon" type="Sprite2D" parent="." node_paths=PackedStringArray("gameModel")]
-position = Vector2(3, 10)
-scale = Vector2(0.96, 0.96)
-texture = ExtResource("7_vpjyd")
-script = ExtResource("8_aqqbd")
-gameModel = NodePath("../Icon2")
-
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(-143, 9)
-texture = ExtResource("7_vpjyd")
-script = ExtResource("9_sohvm")
