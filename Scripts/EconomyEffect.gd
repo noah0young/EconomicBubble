@@ -11,12 +11,16 @@ class_name EcoEffect
 ## both be assigned to a non-zero value)
 @export var addToEconomyByRound : Array[float] = [];
 
+@export var noteForEachRound : Array[String] = [];
+
 ## How many turns have passed since this has been first applied
 var turnsPassed = 0;
 
-func _init(addToDebt : int, addToEconomyByRound : Array[float]) -> void:
+func _init(addToDebt : int, addToEconomyByRound : Array[float], 
+		   noteForEachRound : Array[String] = []) -> void:
 	self.addToDebt = addToDebt;
 	self.addToEconomyByRound = addToEconomyByRound;
+	self.noteForEachRound = noteForEachRound;
 
 func apply(model : GameModel) -> void:
 	if (turnsPassed == 0):

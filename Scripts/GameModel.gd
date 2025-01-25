@@ -1,6 +1,12 @@
 extends Node
 class_name GameModel
 
+const MAX_ECONOMY : float = 100; 
+const MIN_ECONOMY : float = 0; 
+
+const STABLE_ECO_THRESHOLD : float = 80;
+const BAD_ECO_THRESHOLD : float = 40;
+
 @export var economyBalance : float = 10;
 @export var debt : float = 10;
 var effects : Array[EcoEffect];
@@ -14,8 +20,13 @@ func debug_init():
 	print("economyBalance:")
 	print(economyBalance);
 
-func getEcoBalance() -> float:
-	return economyBalance;
+func getEcoState() -> TypeDefs.EcoState:
+	if (economyBalance >= STABLE_ECO_THRESHOLD):
+		return TypeDefs.EcoState.STABLE
+	elif (economyBalance >= BAD_ECO_THRESHOLD):
+		return TypeDefs.EcoState.BAD
+	else:
+		return TypeDefs.EcoState.POPPED
 
 func getDebt() -> float:
 	return debt;
@@ -30,6 +41,7 @@ func endRound() -> void:
 		effect.apply(self);
 		if (effect.isDone()):
 			effects.remove_at(i) # do you need to free a resource?
+	economyBalance = max(min(economyBalance, MAX_ECONOMY), MIN_ECONOMY)
 	print("Round End")
 	print("debt:")
 	print(debt);
@@ -41,3 +53,6 @@ func addToDebt(val : float) -> void:
 	
 func addToEconomy(val : float) -> void:
 	economyBalance += val;
+
+func isGameOver() -> bool:
+	return debt <= 0 or economyBalance
