@@ -23,6 +23,6 @@ func read_database(name: String):
 		if prompt[0] == name:
 			var replies
 			for n in range(2,prompt.size(),1):
-				replies.append(replies)
+				replies.append(n)
 			file.close()
 			return EcoPrompt.new().setup(prompt[0], prompt[1], replies)
