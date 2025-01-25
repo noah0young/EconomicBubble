@@ -9,7 +9,7 @@ const GOOD_ECO_THRESHOLD : float = 600;
 const STABLE_ECO_THRESHOLD : float = 400;
 const BAD_ECO_THRESHOLD : float = 200;
 
-var replyHolder : HBoxContainer;
+@export var replyHolder : HBoxContainer;
 var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
 var curReplies : Array[Button] = [];
 
@@ -17,9 +17,6 @@ var curReplies : Array[Button] = [];
 @export var debt : float = 100;
 @export var promptTextBox : RichTextLabel;
 var effects : Array[EcoEffect];
-
-func _ready():
-	replyHolder = $CanvasLayer/HBoxContainer;
 
 func getEcoState() -> TypeDefs.EcoState:
 	if (economyBalance >= MAX_ECONOMY):

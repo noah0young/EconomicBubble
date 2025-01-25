@@ -1,10 +1,10 @@
 extends Node2D
 
-var gameModel
+@export var gameModel : GameModel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	gameModel = GameModel.new()
+	pass#gameModel = GameModel.new()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
