@@ -110,4 +110,4 @@ func clearReplies():
 	curReplies = []
 
 func debugMakeReply():
-	pass
+	Reply.new("Name", "Reply Text", EcoEffect.new(0, [], []), self).genReply();

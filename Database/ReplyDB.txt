@@ -1,1 +1,4 @@
-Test Reply 1| 
+Name Here|Text Here|Effects Here
+Test Reply 1|This is the Text!|GambleEffect
+Test Reply 2|This is the Text!|IncreaseEffect
+Test Reply 3|This is the Text!|DecreaseEffect

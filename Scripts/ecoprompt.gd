@@ -4,7 +4,7 @@ var name
 var text
 var replies
 
-func setup(name, text, replies): #constructs object
+func _init(name, text, replies) -> void: #constructs object
 	self.name = name
 	self.text = text
 	self.replies = replies

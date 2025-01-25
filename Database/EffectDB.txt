@@ -1,0 +1,4 @@
+Name Here|Type Here|Numbers and Texts Here
+GambleEffect|GAMBLE|100|20|You Lost $100 and the Economy is down by a little.|300|10|YOU WIN! $300 and Economy is up a little!
+IncreaseEffect|ECOEFFECT|20|10,100|Debt goes up by $10 and Economy is up by a little.,Due to previous choices Economy is up by a lot!
+DecreaseEffect|ECOEFFECT|-20|-10,-200|Debt goes down by $20 and Economy is down by a little.,Due to previous choices Economy is down by a lot!

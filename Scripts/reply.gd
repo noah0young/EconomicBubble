@@ -6,7 +6,7 @@ var effect
 var gameModel
 var mouseOn: bool = false
 
-func Reply(name, text, effect, gameModel):
+func _init(name, text, effect, gameModel) -> void:
 	self.name = name
 	self.text = text
 	self.replies = effect
