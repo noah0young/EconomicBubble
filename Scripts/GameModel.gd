@@ -31,6 +31,26 @@ func getDebt() -> float:
 func getEconomy() -> float:
 	return economyBalance;
 
+func getEcoMIN() -> float:
+	return MIN_ECONOMY;
+
+func getEcoMAX() -> float:
+	return MAX_ECONOMY;
+
+func getEcoBAD() -> float:
+	return BAD_ECO_THRESHOLD;
+
+func getEcoSTABLE() -> float:
+	return STABLE_ECO_THRESHOLD;
+
+func getEcoGOOD() -> float:
+	return GOOD_ECO_THRESHOLD;
+
+func getEcoBOOM() -> float:
+	return BOOMING_ECO_THRESHOLD;
+
+
+
 func addEffect(effect : EcoEffect) -> void:
 	effects.append(effect);
 
