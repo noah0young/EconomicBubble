@@ -4,24 +4,21 @@ class_name GameModel
 const MAX_ECONOMY : float = 100; 
 const MIN_ECONOMY : float = 0; 
 
-const STABLE_ECO_THRESHOLD : float = 80;
-const BAD_ECO_THRESHOLD : float = 40;
+const BOOMING_ECO_THRESHOLD : float = 80;
+const GOOD_ECO_THRESHOLD : float = 60;
+const STABLE_ECO_THRESHOLD : float = 40;
+const BAD_ECO_THRESHOLD : float = 20;
 
 @export var economyBalance : float = 10;
 @export var debt : float = 10;
 var effects : Array[EcoEffect];
 
-func debug_init():
-	effects.append(EcoEffect.new(0, [10]))
-	effects.append(EcoEffect.new(-5, [-5, 20]))
-	print("Init")
-	print("debt:")
-	print(debt);
-	print("economyBalance:")
-	print(economyBalance);
-
 func getEcoState() -> TypeDefs.EcoState:
-	if (economyBalance >= STABLE_ECO_THRESHOLD):
+	if (economyBalance >= BOOMING_ECO_THRESHOLD):
+		return TypeDefs.EcoState.BOOMING
+	elif (economyBalance >= GOOD_ECO_THRESHOLD):
+		return TypeDefs.EcoState.GOOD
+	elif (economyBalance >= STABLE_ECO_THRESHOLD):
 		return TypeDefs.EcoState.STABLE
 	elif (economyBalance >= BAD_ECO_THRESHOLD):
 		return TypeDefs.EcoState.BAD
@@ -57,7 +54,7 @@ func endRound() -> void:
 
 func addToDebt(val : float) -> void:
 	debt += val;
-	
+
 func addToEconomy(val : float) -> void:
 	economyBalance += val;
 

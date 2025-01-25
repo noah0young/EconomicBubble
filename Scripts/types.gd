@@ -1,2 +1,2 @@
 class_name TypeDefs
-enum EcoState {STABLE, BAD, POPPED}
+enum EcoState {BOOMING, GOOD, STABLE, BAD, POPPED}
