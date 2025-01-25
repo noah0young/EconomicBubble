@@ -17,3 +17,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Prompt="*res://Scripts/prompt.gd"
+Types="*res://Scripts/types.gd"
