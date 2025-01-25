@@ -9,7 +9,7 @@ var mouseOn: bool = false
 func _init(name, text, effect, gameModel) -> void:
 	self.name = name
 	self.text = text
-	self.replies = effect
+	self.effect = effect
 	self.gameModel = gameModel
 
 func getName(): # returns object name
@@ -42,4 +42,4 @@ func selectReply(effect : EcoEffect) -> void: # adds reply effect to the gamemod
 	gameModel.addEffect(effect)
 
 func genReply(): # generates a reply onto the table
-	return
+	gameModel.addReply(self)

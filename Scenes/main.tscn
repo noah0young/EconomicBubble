@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqhjiw1gkdcpq" path="res://Art/BG/BG-4.png" id="4_1cvxj"]
 [ext_resource type="Texture2D" uid="uid://bahm6a0b5hayo" path="res://Art/BG/BG-5.png" id="5_wguxr"]
 [ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_lxp5v"]
-[ext_resource type="Script" path="res://Scripts/reply.gd" id="8_pv6bd"]
+[ext_resource type="Script" path="res://Scripts/GameModel.gd" id="8_eis76"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhbbb"]
 animations = [{
@@ -40,8 +40,9 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("gameModel")]
 script = ExtResource("1_expxs")
+gameModel = NodePath("GameModel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -50,6 +51,13 @@ follow_viewport_enabled = true
 [node name="Background" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = -307.0
+offset_top = 7.0
+offset_right = 294.0
+offset_bottom = 438.0
+alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
@@ -73,4 +81,16 @@ offset_bottom = 195.0
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
-script = ExtResource("8_pv6bd")
+
+[node name="DEBUGButton" type="Button" parent="."]
+offset_left = 52.0
+offset_top = -158.0
+offset_right = 542.0
+offset_bottom = 157.0
+text = "DEBUG"
+
+[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("replyHolder")]
+script = ExtResource("8_eis76")
+replyHolder = NodePath("../CanvasLayer/HBoxContainer")
+
+[connection signal="button_down" from="DEBUGButton" to="." method="_on_debug_button_button_down"]
