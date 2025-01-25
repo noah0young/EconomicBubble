@@ -1,4 +1,4 @@
-extends Resource
+extends AbstractEcoEffect
 class_name EcoEffect
 
 ## What is added/removed from your debt
@@ -12,9 +12,6 @@ class_name EcoEffect
 @export var addToEconomyByRound : Array[float] = [];
 
 @export var noteForEachRound : Array[String] = [];
-
-## How many turns have passed since this has been first applied
-var turnsPassed = 0;
 
 func _init(addToDebt : int, addToEconomyByRound : Array[float], 
 		   noteForEachRound : Array[String] = []) -> void:
@@ -33,9 +30,6 @@ func getNote() -> String:
 	if (turnsPassed < noteForEachRound.size()):
 		return noteForEachRound[turnsPassed];
 	return "";
-
-func nextTurn() -> void:
-	turnsPassed += 1;
 
 func isDone() -> bool:
 	return turnsPassed >= addToEconomyByRound.size();
