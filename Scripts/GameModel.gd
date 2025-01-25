@@ -4,7 +4,7 @@ class_name GameModel
 const MAX_ECONOMY : float = 100; 
 const MIN_ECONOMY : float = 0; 
 
-const BOOMING_ECO_THRESHOLD : float = 80;
+const BURSTING_ECO_THRESHOLD : float = 80;
 const GOOD_ECO_THRESHOLD : float = 60;
 const STABLE_ECO_THRESHOLD : float = 40;
 const BAD_ECO_THRESHOLD : float = 20;
@@ -16,8 +16,8 @@ var effects : Array[EcoEffect];
 func getEcoState() -> TypeDefs.EcoState:
 	if (economyBalance >= MAX_ECONOMY):
 		return TypeDefs.EcoState.POPPED
-	elif (economyBalance >= BOOMING_ECO_THRESHOLD):
-		return TypeDefs.EcoState.BOOMING
+	elif (economyBalance >= BURSTING_ECO_THRESHOLD):
+		return TypeDefs.EcoState.BURSTING
 	elif (economyBalance >= GOOD_ECO_THRESHOLD):
 		return TypeDefs.EcoState.GOOD
 	elif (economyBalance >= STABLE_ECO_THRESHOLD):
@@ -50,8 +50,8 @@ func getEcoSTABLE() -> float:
 func getEcoGOOD() -> float:
 	return GOOD_ECO_THRESHOLD;
 
-func getEcoBOOM() -> float:
-	return BOOMING_ECO_THRESHOLD;
+func getEcoBURST() -> float:
+	return BURSTING_ECO_THRESHOLD;
 
 
 
