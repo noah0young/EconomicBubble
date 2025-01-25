@@ -14,7 +14,9 @@ const BAD_ECO_THRESHOLD : float = 20;
 var effects : Array[EcoEffect];
 
 func getEcoState() -> TypeDefs.EcoState:
-	if (economyBalance >= BOOMING_ECO_THRESHOLD):
+	if (economyBalance >= MAX_ECONOMY):
+		return TypeDefs.EcoState.POPPED
+	elif (economyBalance >= BOOMING_ECO_THRESHOLD):
 		return TypeDefs.EcoState.BOOMING
 	elif (economyBalance >= GOOD_ECO_THRESHOLD):
 		return TypeDefs.EcoState.GOOD
@@ -22,6 +24,8 @@ func getEcoState() -> TypeDefs.EcoState:
 		return TypeDefs.EcoState.STABLE
 	elif (economyBalance >= BAD_ECO_THRESHOLD):
 		return TypeDefs.EcoState.BAD
+	elif (economyBalance >= MIN_ECONOMY):
+		return TypeDefs.EcoState.POPPING
 	else:
 		return TypeDefs.EcoState.POPPED
 

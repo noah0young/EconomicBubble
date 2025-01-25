@@ -11,7 +11,7 @@ func _ready() -> void:
 	curScale = curEco / 100
 	scale.x = curScale
 	scale.y = curScale
-	bubState = TypeDefs.EcoState.STABLE
+	bubState =  gameModel. getEcoState()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,15 +23,4 @@ func _process(delta: float) -> void:
 		curScale -= .01
 	scale.x = curScale
 	scale.y = curScale
-	if curEco <= gameModel.getEcoMIN():
-		bubState = TypeDefs.EcoState.POPPED
-	elif curEco <= gameModel.getEcoBAD():
-		bubState = TypeDefs.EcoState.BAD
-	elif curEco <= gameModel.getEcoSTABLE():
-		bubState = TypeDefs.EcoState.STABLE
-	elif curEco <= gameModel.getEcoGOOD():
-		bubState = TypeDefs.EcoState.GOOD
-	elif curEco <= gameModel.getEcoBURST():
-		bubState = TypeDefs.EcoState.BOOMING
-	elif curEco >= gameModel.getEcoMAX():
-		bubState = TypeDefs.EcoState.POPPED
+	bubState =  gameModel. getEcoState()
