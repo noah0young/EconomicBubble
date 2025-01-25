@@ -4,7 +4,7 @@ var name
 var text
 var replies
 
-func EcoPrompt(name, text, replies): #constructs object
+func setup(name, text, replies): #constructs object
 	self.name = name
 	self.text = text
 	self.replies = replies
