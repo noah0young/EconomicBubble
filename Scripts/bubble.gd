@@ -1,6 +1,6 @@
 extends Node2D
 
-var gameModel
+@export var gameModel : GameModel
 var curEco
 var curScale
 var bubState
