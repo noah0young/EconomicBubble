@@ -39,6 +39,15 @@ animations = [{
 
 [node name="Main" type="Node2D"]
 
-[node name="Background" type="AnimatedSprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Background" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"idle"
+frame_progress = 0.37755
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+zoom = Vector2(0.6, 0.6)
