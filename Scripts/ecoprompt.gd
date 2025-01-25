@@ -4,6 +4,7 @@ var name
 var text
 var replies
 
+
 func setup(name, text, replies): #constructs object
 	self.name = name
 	self.text = text
