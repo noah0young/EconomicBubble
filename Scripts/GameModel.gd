@@ -9,10 +9,17 @@ const GOOD_ECO_THRESHOLD : float = 600;
 const STABLE_ECO_THRESHOLD : float = 400;
 const BAD_ECO_THRESHOLD : float = 200;
 
+var replyHolder : HBoxContainer;
+var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
+var curReplies : Array[Button] = [];
+
 @export var economyBalance : float = 500;
 @export var debt : float = 100;
 @export var promptTextBox : RichTextLabel;
 var effects : Array[EcoEffect];
+
+func _ready():
+	replyHolder = $CanvasLayer/HBoxContainer;
 
 func getEcoState() -> TypeDefs.EcoState:
 	if (economyBalance >= MAX_ECONOMY):
@@ -67,6 +74,7 @@ func getRoundNotes() -> Array[String]:
 	return noteArray;
 
 func endRound() -> void:
+	clearReplies();
 	for i in range(effects.size() - 1, -1, -1):
 		print("Applying Effect [" + str(i) + "]");
 		var effect = effects[i]
@@ -89,3 +97,17 @@ func addToEconomy(val : float) -> void:
 
 func isGameOver() -> bool:
 	return debt <= 0 or economyBalance
+
+func addReply(reply : Reply):
+	var newReply : Button = replyButtonPrefab.instantiate()
+	newReply.text = reply.text;
+	curReplies.append(newReply);
+	replyHolder.add_child(newReply);
+
+func clearReplies():
+	for reply in curReplies:
+		reply.queue_free()
+	curReplies = []
+
+func debugMakeReply():
+	pass

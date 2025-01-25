@@ -42,4 +42,4 @@ func selectReply(effect : EcoEffect) -> void: # adds reply effect to the gamemod
 	gameModel.addEffect(effect)
 
 func genReply(): # generates a reply onto the table
-	return
+	gameModel.addReply(self)

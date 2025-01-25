@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cidt6d1llhvtt"]
+
+[node name="ReplyPrefab" type="Button"]
+text = "Hello"
