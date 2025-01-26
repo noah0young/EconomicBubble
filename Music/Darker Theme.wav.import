@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://st8i4p0opih1"
+path="res://.godot/imported/Darker Theme.wav-8352142ccd38e3315f6484f88bfbf70a.sample"
+
+[deps]
+
+source_file="res://Music/Darker Theme.wav"
+dest_files=["res://.godot/imported/Darker Theme.wav-8352142ccd38e3315f6484f88bfbf70a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
