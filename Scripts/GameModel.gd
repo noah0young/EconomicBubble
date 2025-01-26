@@ -1,6 +1,8 @@
 extends Node
 class_name GameModel
 
+var roundNum = 0
+
 @export var animManager : AnimManager;
 @export var newsContButton : Button;
 
@@ -26,8 +28,9 @@ var curReplies : Array[Button] = [];
 var effects : Array[AbstractEcoEffect];
 
 func nextRound():
+	roundNum += 1;
 	# Show Day Count Here in screen animation
-	await animManager.playDayStartAnim()
+	await animManager.playDayStartAnim(roundNum)
 	# Show News in screen animation
 	await allNews();
 	getPrompt()
@@ -35,10 +38,18 @@ func nextRound():
 	changeTextRich()
 
 func allNews():
-	for note in ["Hello", "Good"]:#getRoundNotes():
-		await animManager.showNews("Today's News", note);
+	var news : Array[String] = ["Hello", "Good"]#getRoundNotes():
+	for i in range(0, news.size()):
+		var note = news[i];
+		if (i == 0):
+			await animManager.showNews("Today's News", note);
+		else:
+			await animManager.contShowNews("Today's News", note);
 		await newsContButton.pressed
-		await animManager.hideNews()
+		if (i == news.size() - 1):
+			await animManager.hideNews()
+		else:
+			await animManager.contHideNews();
 
 func getEcoState() -> TypeDefs.EcoState:
 	if (economyBalance >= MAX_ECONOMY):

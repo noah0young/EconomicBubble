@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=20 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -255,8 +255,112 @@ tracks/3/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_152sc"]
+resource_name = "Continue Show News"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewsTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewsContButton:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewsText:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jw0mn"]
+resource_name = "Continue Hide News"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewsTitle:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewsText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewsContButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6raae"]
 _data = {
+"Continue Hide News": SubResource("Animation_jw0mn"),
+"Continue Show News": SubResource("Animation_152sc"),
 "HideNews": SubResource("Animation_qsodk"),
 "RESET": SubResource("Animation_td70j"),
 "ShowNews": SubResource("Animation_xw3y8")
@@ -421,9 +525,13 @@ script = ExtResource("8_eis76")
 animManager = NodePath("../AnimManager")
 newsContButton = NodePath("../CanvasLayer/Background/NewsOverlay/NewsContButton")
 replyHolder = NodePath("../CanvasLayer/HBoxContainer")
+economyBalance = null
+debt = null
 promptTextBox = NodePath("../Control/PromptTextLabel")
 
-[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("dayStartAnimPlayer", "newsAnimPlayer")]
+[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("dayStartAnimPlayer", "newsAnimPlayer", "dayTextLabel", "newsTextLabel")]
 script = ExtResource("9_5hjtg")
 dayStartAnimPlayer = NodePath("../CanvasLayer/Background/DayStartAnimationPlayer")
 newsAnimPlayer = NodePath("../CanvasLayer/Background/NewsOverlay/NewsAnimationPlayer")
+dayTextLabel = NodePath("../CanvasLayer/Background/DayCountOverlay/DayTextLabel")
+newsTextLabel = NodePath("../CanvasLayer/Background/NewsOverlay/NewsText")
