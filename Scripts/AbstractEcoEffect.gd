@@ -23,3 +23,6 @@ func nextTurn() -> void:
 
 func isDone() -> bool:
 	return true
+
+func isPositive() -> bool:
+	return true

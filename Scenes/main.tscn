@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=34 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bnohdinlwf0dh" path="res://Art/BG/BG-3.png" id="3_1r7um"]
 [ext_resource type="Texture2D" uid="uid://bqhjiw1gkdcpq" path="res://Art/BG/BG-4.png" id="4_1cvxj"]
 [ext_resource type="Texture2D" uid="uid://bahm6a0b5hayo" path="res://Art/BG/BG-5.png" id="5_wguxr"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="7_aq7d8"]
 [ext_resource type="Script" path="res://Scripts/ButtonFX.gd" id="7_eupm5"]
 [ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_lxp5v"]
 [ext_resource type="Script" path="res://Scripts/GameModel.gd" id="8_eis76"]
@@ -756,13 +757,16 @@ follow_viewport_enabled = true
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
 
-[node name="UI" type="Control" parent="CanvasLayer/Background"]
+[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("model", "debtValueLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("7_aq7d8")
+model = NodePath("../../../GameModel")
+debtValueLabel = NodePath("ColorRect/DebtValueLabel")
 
 [node name="Control" type="Control" parent="CanvasLayer/Background/UI"]
 layout_mode = 1
@@ -809,6 +813,36 @@ alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_2ku3o")
 }
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/UI"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = -302.0
+offset_right = 856.0
+offset_bottom = -102.0
+
+[node name="DebtTitleLabel" type="RichTextLabel" parent="CanvasLayer/Background/UI/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font_size={40}][center][pulse freq=0.8 color=#520206][color=#a81118] DEBT OWED"
+
+[node name="DebtValueLabel" type="RichTextLabel" parent="CanvasLayer/Background/UI/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[font_size={70}][center][color=#570004] - $1000000"
+fit_content = true
+scroll_active = false
 
 [node name="DayStartAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background"]
 root_node = NodePath("../DayCountOverlay")
@@ -1001,8 +1035,9 @@ zoom = Vector2(0.6, 0.6)
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
 
-[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("musicManager", "animManager", "newsContButton", "replyHolder", "promptTextBox")]
+[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("uiManager", "musicManager", "animManager", "newsContButton", "replyHolder", "promptTextBox")]
 script = ExtResource("8_eis76")
+uiManager = NodePath("../CanvasLayer/Background/UI")
 musicManager = NodePath("../BackgroundMusic")
 animManager = NodePath("../AnimManager")
 newsContButton = NodePath("../CanvasLayer/Background/NewsOverlay/NewsContButton")
