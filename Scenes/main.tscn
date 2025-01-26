@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=14 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bahm6a0b5hayo" path="res://Art/BG/BG-5.png" id="5_wguxr"]
 [ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_lxp5v"]
 [ext_resource type="Script" path="res://Scripts/GameModel.gd" id="8_eis76"]
+[ext_resource type="Script" path="res://Scripts/AnimManager.gd" id="9_5hjtg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhbbb"]
 animations = [{
@@ -40,6 +41,67 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_m3lgu"]
+resource_name = "DayStart"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1.86667, 2.33333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.06667, 2.53333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rj3m2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5p4q"]
+_data = {
+"DayStart": SubResource("Animation_m3lgu"),
+"RESET": SubResource("Animation_rj3m2")
+}
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("gameModel")]
 script = ExtResource("1_expxs")
 gameModel = NodePath("GameModel")
@@ -51,6 +113,50 @@ follow_viewport_enabled = true
 [node name="Background" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
+
+[node name="DayCountOverlay" type="Control" parent="CanvasLayer/Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/DayCountOverlay"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="DayTextLabel" type="RichTextLabel" parent="CanvasLayer/Background/DayCountOverlay"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -245.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size={200}][center]Day 1"
+fit_content = true
+scroll_active = false
+
+[node name="DayStartAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background"]
+root_node = NodePath("../DayCountOverlay")
+libraries = {
+"": SubResource("AnimationLibrary_r5p4q")
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = -307.0
@@ -82,16 +188,12 @@ offset_bottom = 195.0
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
 
-[node name="DEBUGButton" type="Button" parent="."]
-offset_left = 52.0
-offset_top = -158.0
-offset_right = 542.0
-offset_bottom = 157.0
-text = "DEBUG"
-
-[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("replyHolder", "promptTextBox")]
+[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("animManager", "replyHolder", "promptTextBox")]
 script = ExtResource("8_eis76")
+animManager = NodePath("../AnimManager")
 replyHolder = NodePath("../CanvasLayer/HBoxContainer")
 promptTextBox = NodePath("../Control/PromptTextLabel")
 
-[connection signal="button_down" from="DEBUGButton" to="." method="_on_debug_button_button_down"]
+[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("dayStartAnimPlayer")]
+script = ExtResource("9_5hjtg")
+dayStartAnimPlayer = NodePath("../CanvasLayer/Background/DayStartAnimationPlayer")

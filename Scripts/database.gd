@@ -50,14 +50,11 @@ func readEffectDB(name: String):
 		var line = file.get_line()
 		var effect = line.split("|")
 		if effect[0] == name:
-			print("Got HERE -1:" + effect[1] + "=" + TypeDefs.strOfEffectType(TypeDefs.EffectType.GAMBLE) + "=" + TypeDefs.strOfEffectType(TypeDefs.EffectType.ECOEFFECT))
 			if (effect[1] == TypeDefs.strOfEffectType(TypeDefs.EffectType.GAMBLE)):
 				file.close()
-				print("Got HERE")
 				return GamblingEcoEffect.new(float(effect[2]), int(effect[3]), int(effect[4]), str(effect[5]), int(effect[6]), int(effect[7]), str(effect[8]))
 			elif (effect[1] == TypeDefs.strOfEffectType(TypeDefs.EffectType.ECOEFFECT)):
 				file.close()
-				print("Got HERE2")
 				var addToEconomyByRoundAsStr = effect[3].split(",")
 				var addToEconomyByRound : Array[float] = [];
 				for i in range(0, addToEconomyByRoundAsStr.size()):
