@@ -58,3 +58,6 @@ func getNote() -> String:
 
 func isDone() -> bool:
 	return true
+
+func isPositive() -> bool:
+	return won;
