@@ -33,3 +33,6 @@ func getNote() -> String:
 
 func isDone() -> bool:
 	return turnsPassed >= addToEconomyByRound.size();
+
+func isPositive() -> bool:
+	return addToDebt < 0;

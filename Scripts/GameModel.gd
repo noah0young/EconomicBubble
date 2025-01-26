@@ -58,7 +58,7 @@ func allNews():
 			await animManager.showNews("Today's News", note);
 		else:
 			await animManager.contShowNews("Today's News", note);
-		musicManager.playMoneySFX(false);
+		musicManager.playMoneySFX(effects[i].isPositive());
 		await newsContButton.pressed
 		if (i == news.size() - 1):
 			await animManager.hideNews()
