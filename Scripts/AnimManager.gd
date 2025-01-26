@@ -1,6 +1,7 @@
 extends Node2D
 class_name AnimManager
 
+@export var winLoseAnimPlayer : AnimationPlayer;
 @export var dayStartAnimPlayer : AnimationPlayer;
 @export var newsAnimPlayer : AnimationPlayer;
 
@@ -29,3 +30,9 @@ func contHideNews():
 func hideNews():
 	newsAnimPlayer.play("HideNews");
 	await get_tree().create_timer(1).timeout
+
+func playWinAnim():
+	winLoseAnimPlayer.play("Win")
+
+func playLoseAnim():
+	winLoseAnimPlayer.play("Lose")

@@ -25,25 +25,28 @@ var currentPrompt: EcoPrompt
 var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
 var curReplies : Array[Button] = [];
 
-@export var economyBalance : float = 500;
+@export var economyBalance : float = 1000#500;
 @export var debt : float = 100;
 @export var promptTextBox : RichTextLabel;
 var effects : Array[AbstractEcoEffect];
 
 func nextRound():
-	musicManager.setTargetVolFade(economyBalance < 50, DAY_TRANS_VOL);
+	musicManager.setTargetVolFade(isGoingPoorly(), DAY_TRANS_VOL);
 	roundNum += 1;
 	# Show Day Count Here in screen animation
 	await animManager.playDayStartAnim(roundNum)
-	musicManager.startMusic(economyBalance < 50);
+	musicManager.startMusic(isGoingPoorly());
 	# Show News in screen animation
 	await allNews();
 	getPrompt()
 	currentPrompt.genPrompt()
 	changeTextRich()
 
+func isGoingPoorly() -> bool:
+	return economyBalance < BAD_ECO_THRESHOLD or economyBalance > BURSTING_ECO_THRESHOLD
+
 func allNews():
-	var news : Array[String] = ["Hello", "Good"]#getRoundNotes():
+	var news : Array[String] = getRoundNotes()
 	for i in range(0, news.size()):
 		var note = news[i];
 		if (i == 0):
@@ -125,7 +128,10 @@ func endRound() -> void:
 	print(debt);
 	print("economyBalance:")
 	print(economyBalance);
-	nextRound()
+	if (!isGameOver()):
+		nextRound()
+	else:
+		showGameOver()
 
 func addToDebt(val : float) -> void:
 	debt += val;
@@ -134,7 +140,13 @@ func addToEconomy(val : float) -> void:
 	economyBalance += val;
 
 func isGameOver() -> bool:
-	return debt <= 0 or economyBalance
+	return debt <= 0 or economyBalance <= MIN_ECONOMY or economyBalance >= MAX_ECONOMY
+
+func showGameOver() -> void:
+	if (debt <= 0):
+		animManager.playWinAnim();
+	else:
+		animManager.playLoseAnim();
 
 func addReply(reply : Reply):
 	var newReply : Button = replyButtonPrefab.instantiate()
