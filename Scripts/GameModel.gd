@@ -9,6 +9,10 @@ const GOOD_ECO_THRESHOLD : float = 600;
 const STABLE_ECO_THRESHOLD : float = 400;
 const BAD_ECO_THRESHOLD : float = 200;
 
+@onready var database: DataBase = DataBase.new(self)
+
+var currentPrompt: EcoPrompt
+
 @export var replyHolder : HBoxContainer;
 var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
 var curReplies : Array[Button] = [];
@@ -59,7 +63,7 @@ func getEcoBURST() -> float:
 	return BURSTING_ECO_THRESHOLD;
 
 func changeTextRich():
-	promptTextBox.add_text(self.text)
+	promptTextBox.add_text(currentPrompt.text)
 
 func addEffect(effect : EcoEffect) -> void:
 	effects.append(effect);
@@ -108,3 +112,8 @@ func clearReplies():
 
 func debugMakeReply():
 	Reply.new("Name", "Reply Text", EcoEffect.new(0, [], []), self).genReply();
+	getPrompt()
+	changeTextRich()
+
+func getPrompt():
+	currentPrompt = database.getRandom()

@@ -3,11 +3,12 @@ class_name DataBase
 var ecopromptDB = "res://Database/EcopromptDB.txt"
 var replyDB = "res://Database/ReplyDB.txt"
 var effectDB = "res://Database/EffectDB.txt"
-var names
+var names: Array
 var gameModel
 
-func setGameModel(gameModel: GameModel):
+func _init(gameModel: GameModel) -> void:
 	self.gameModel = gameModel
+	setNames()
 
 func setNames():
 	var file = FileAccess.open(ecopromptDB, FileAccess.READ)
@@ -18,7 +19,7 @@ func setNames():
 	file.close()
 
 func getRandom():
-	return readDatabase(names.get(randi_range(0, names.size())))
+	return readDatabase(names[randi_range(0, names.size() - 2)])
 
 #Reads the ecoprompt database and returns a new Ecoprompt for the specified name.  
 func readDatabase(name: String):
@@ -27,8 +28,8 @@ func readDatabase(name: String):
 		var line = file.get_line()
 		var prompt = line.split("|")
 		if prompt[0] == name:
-			var replies
-			for n in range(2, prompt):
+			var replies: Array
+			for n in range(2, prompt.size()):
 				replies.append(readReplyDB(prompt[n]))
 			file.close()
 			return EcoPrompt.new(prompt[0], prompt[1], replies)
@@ -49,10 +50,10 @@ func readEffectDB(name: String):
 		var line = file.get_line()
 		var effect = line.split("|")
 		if effect[0] == name:
-			if (effect[1] == TypeDefs.EffectType.GAMBLE):
+			if (effect[1] == str(TypeDefs.EffectType.GAMBLE)):
 				file.close()
 				return GamblingEcoEffect.new(effect[2], effect[3], effect[4], effect[5], effect[6], effect[7], effect[8])
-			elif (effect[1] == TypeDefs.EffectType.ECOEFFECT):
+			elif (effect[1] == str(TypeDefs.EffectType.ECOEFFECT)):
 				file.close()
 				var addToEconomyByRound = effect[3].split(",")
 				if (effect.size() == 4):
