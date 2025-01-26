@@ -3,6 +3,9 @@ class_name GameModel
 
 var roundNum = 0
 
+@export var musicManager : BackgroundMusicManager;
+const DAY_TRANS_VOL = -10
+
 @export var animManager : AnimManager;
 @export var newsContButton : Button;
 
@@ -28,9 +31,11 @@ var curReplies : Array[Button] = [];
 var effects : Array[AbstractEcoEffect];
 
 func nextRound():
+	musicManager.setTargetVolFade(economyBalance < 50, DAY_TRANS_VOL);
 	roundNum += 1;
 	# Show Day Count Here in screen animation
 	await animManager.playDayStartAnim(roundNum)
+	musicManager.startMusic(economyBalance < 50);
 	# Show News in screen animation
 	await allNews();
 	getPrompt()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=24 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -6,9 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bnohdinlwf0dh" path="res://Art/BG/BG-3.png" id="3_1r7um"]
 [ext_resource type="Texture2D" uid="uid://bqhjiw1gkdcpq" path="res://Art/BG/BG-4.png" id="4_1cvxj"]
 [ext_resource type="Texture2D" uid="uid://bahm6a0b5hayo" path="res://Art/BG/BG-5.png" id="5_wguxr"]
+[ext_resource type="Script" path="res://Scripts/ButtonFX.gd" id="7_eupm5"]
 [ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_lxp5v"]
 [ext_resource type="Script" path="res://Scripts/GameModel.gd" id="8_eis76"]
 [ext_resource type="Script" path="res://Scripts/AnimManager.gd" id="9_5hjtg"]
+[ext_resource type="AudioStream" uid="uid://bq7arm3083sm6" path="res://Music/Lighter Theme.wav" id="11_fcd6k"]
+[ext_resource type="Script" path="res://Scripts/BackgroundMusicManager.gd" id="11_ug56f"]
+[ext_resource type="AudioStream" uid="uid://st8i4p0opih1" path="res://Music/Darker Theme.wav" id="12_a8u76"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhbbb"]
 animations = [{
@@ -489,6 +493,7 @@ offset_top = 861.0
 offset_right = 1271.0
 offset_bottom = 1038.0
 text = "Continue News"
+script = ExtResource("7_eupm5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = -307.0
@@ -520,13 +525,12 @@ offset_bottom = 195.0
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
 
-[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("animManager", "newsContButton", "replyHolder", "promptTextBox")]
+[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("musicManager", "animManager", "newsContButton", "replyHolder", "promptTextBox")]
 script = ExtResource("8_eis76")
+musicManager = NodePath("../BackgroundMusic")
 animManager = NodePath("../AnimManager")
 newsContButton = NodePath("../CanvasLayer/Background/NewsOverlay/NewsContButton")
 replyHolder = NodePath("../CanvasLayer/HBoxContainer")
-economyBalance = null
-debt = null
 promptTextBox = NodePath("../Control/PromptTextLabel")
 
 [node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("dayStartAnimPlayer", "newsAnimPlayer", "dayTextLabel", "newsTextLabel")]
@@ -535,3 +539,18 @@ dayStartAnimPlayer = NodePath("../CanvasLayer/Background/DayStartAnimationPlayer
 newsAnimPlayer = NodePath("../CanvasLayer/Background/NewsOverlay/NewsAnimationPlayer")
 dayTextLabel = NodePath("../CanvasLayer/Background/DayCountOverlay/DayTextLabel")
 newsTextLabel = NodePath("../CanvasLayer/Background/NewsOverlay/NewsText")
+
+[node name="BackgroundMusic" type="Node" parent="." node_paths=PackedStringArray("lightBackgroundMusicPlayer", "darkBackgroundMusicPlayer")]
+script = ExtResource("11_ug56f")
+lightBackgroundMusicPlayer = NodePath("LightBackgroundMusicPlayer2")
+darkBackgroundMusicPlayer = NodePath("DarkBackgroundMusicPlayer")
+
+[node name="LightBackgroundMusicPlayer2" type="AudioStreamPlayer2D" parent="BackgroundMusic"]
+stream = ExtResource("11_fcd6k")
+
+[node name="DarkBackgroundMusicPlayer" type="AudioStreamPlayer2D" parent="BackgroundMusic"]
+stream = ExtResource("12_a8u76")
+
+[connection signal="button_down" from="CanvasLayer/Background/NewsOverlay/NewsContButton" to="CanvasLayer/Background/NewsOverlay/NewsContButton" method="_on_button_down"]
+[connection signal="button_up" from="CanvasLayer/Background/NewsOverlay/NewsContButton" to="CanvasLayer/Background/NewsOverlay/NewsContButton" method="_on_button_up"]
+[connection signal="pressed" from="CanvasLayer/Background/NewsOverlay/NewsContButton" to="CanvasLayer/Background/NewsOverlay/NewsContButton" method="_on_pressed"]

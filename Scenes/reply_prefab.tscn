@@ -1,5 +1,12 @@
-[gd_scene format=3 uid="uid://cidt6d1llhvtt"]
+[gd_scene load_steps=2 format=3 uid="uid://cidt6d1llhvtt"]
+
+[ext_resource type="Script" path="res://Scripts/ButtonFX.gd" id="1_2grs2"]
 
 [node name="ReplyPrefab" type="Button"]
 tooltip_text = "uegfiugweilhfikh"
 text = "Hello"
+script = ExtResource("1_2grs2")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
