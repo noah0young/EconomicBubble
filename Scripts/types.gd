@@ -24,6 +24,15 @@ static var possibleClickUpSFX : Array[AudioStream] = [
 	preload("res://SFX/Button Click 5.wav")
 ]
 
+static var possibleCheeseManSFX : Array[AudioStream] = [
+	preload("res://SFX/Cheese Man 1.wav"),
+	preload("res://SFX/Cheese Man 2.wav"),
+	preload("res://SFX/Cheese Man 3.wav")
+]
+
+static var moneyUpSFX = preload("res://SFX/Money Up.wav")
+static var moneyDownSFX = preload("res://SFX/Money Down.wav")
+
 static func getRandClickDownSFX() -> AudioStream:
 	var randSelected : int = rng.randi_range(0, possibleClickDownSFX.size() - 1);
 	return possibleClickDownSFX[randSelected]
@@ -31,6 +40,10 @@ static func getRandClickDownSFX() -> AudioStream:
 static func getRandClickUpSFX() -> AudioStream:
 	var randSelected : int = rng.randi_range(0, possibleClickUpSFX.size() - 1);
 	return possibleClickUpSFX[randSelected]
+
+static func getRandCheeseManSFX() -> AudioStream:
+	var randSelected : int = rng.randi_range(0, possibleCheeseManSFX.size() - 1);
+	return possibleCheeseManSFX[randSelected]
 
 static func playSFX(sfx : AudioStream, referenceObj : Node):
 	var player : AudioStreamPlayer2D = AudioStreamPlayer2D.new();

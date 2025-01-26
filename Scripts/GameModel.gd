@@ -25,9 +25,11 @@ var currentPrompt: EcoPrompt
 var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
 var curReplies : Array[Button] = [];
 
-@export var economyBalance : float = 1000#500;
+@export var economyBalance : float = 500;
 @export var debt : float = 100;
 @export var promptTextBox : RichTextLabel;
+const PROMPT_TEXT_BBCODE : String = "[font_size={50}][center]"
+const TIME_BETWEEN_CHAR : float = 0.05
 var effects : Array[AbstractEcoEffect];
 
 func nextRound():
@@ -39,8 +41,7 @@ func nextRound():
 	# Show News in screen animation
 	await allNews();
 	getPrompt()
-	currentPrompt.genPrompt()
-	changeTextRich()
+	showPrompt()
 
 func isGoingPoorly() -> bool:
 	return economyBalance < BAD_ECO_THRESHOLD or economyBalance > BURSTING_ECO_THRESHOLD
@@ -53,6 +54,7 @@ func allNews():
 			await animManager.showNews("Today's News", note);
 		else:
 			await animManager.contShowNews("Today's News", note);
+		musicManager.playMoneySFX(false);
 		await newsContButton.pressed
 		if (i == news.size() - 1):
 			await animManager.hideNews()
@@ -99,8 +101,14 @@ func getEcoGOOD() -> float:
 func getEcoBURST() -> float:
 	return BURSTING_ECO_THRESHOLD;
 
-func changeTextRich():
-	promptTextBox.set_text(currentPrompt.text)
+func showPrompt():
+	var toDisplay : String = currentPrompt.text;
+	# Talk through prompt
+	for i in range(0, toDisplay.length()):
+		musicManager.playTalkSound("CheeseMan")
+		promptTextBox.set_text(PROMPT_TEXT_BBCODE + toDisplay.substr(0, i))
+		await get_tree().create_timer(TIME_BETWEEN_CHAR).timeout
+	currentPrompt.genPrompt()
 
 func addEffect(effect : AbstractEcoEffect) -> void:
 	effects.append(effect);
