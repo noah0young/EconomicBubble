@@ -39,7 +39,6 @@ func _init(oddsOfWinning : float, addToDebtLose : int, addToEconomyLose : int, l
 	
 	var rng = RandomNumberGenerator.new()
 	won = rng.randf() < oddsOfWinning;
-	rng.free();
 
 func apply(model : GameModel) -> void:
 	if (won):

@@ -20,7 +20,7 @@ var curReplies : Array[Button] = [];
 @export var economyBalance : float = 500;
 @export var debt : float = 100;
 @export var promptTextBox : RichTextLabel;
-var effects : Array[EcoEffect];
+var effects : Array[AbstractEcoEffect];
 
 func getEcoState() -> TypeDefs.EcoState:
 	if (economyBalance >= MAX_ECONOMY):
@@ -65,7 +65,7 @@ func getEcoBURST() -> float:
 func changeTextRich():
 	promptTextBox.add_text(currentPrompt.text)
 
-func addEffect(effect : EcoEffect) -> void:
+func addEffect(effect : AbstractEcoEffect) -> void:
 	effects.append(effect);
 
 func getRoundNotes() -> Array[String]:
@@ -79,6 +79,8 @@ func endRound() -> void:
 	for i in range(effects.size() - 1, -1, -1):
 		print("Applying Effect [" + str(i) + "]");
 		var effect = effects[i]
+		print("effect:")
+		print(effect)
 		effect.apply(self);
 		effect.nextTurn();
 		if (effect.isDone()):
@@ -103,6 +105,12 @@ func addReply(reply : Reply):
 	var newReply : Button = replyButtonPrefab.instantiate()
 	newReply.text = reply.text;
 	curReplies.append(newReply);
+	newReply.pressed.connect(
+		func ():
+		print("Press")
+		addEffect(reply.getEffect())
+		endRound()
+		)
 	replyHolder.add_child(newReply);
 
 func clearReplies():
@@ -111,7 +119,6 @@ func clearReplies():
 	curReplies = []
 
 func debugMakeReply():
-	Reply.new("Name", "Reply Text", EcoEffect.new(0, [], []), self).genReply();
 	getPrompt()
 	currentPrompt.genPrompt()
 	changeTextRich()

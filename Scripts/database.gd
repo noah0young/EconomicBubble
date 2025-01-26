@@ -50,13 +50,19 @@ func readEffectDB(name: String):
 		var line = file.get_line()
 		var effect = line.split("|")
 		if effect[0] == name:
-			if (effect[1] == str(TypeDefs.EffectType.GAMBLE)):
+			print("Got HERE -1:" + effect[1] + "=" + TypeDefs.strOfEffectType(TypeDefs.EffectType.GAMBLE) + "=" + TypeDefs.strOfEffectType(TypeDefs.EffectType.ECOEFFECT))
+			if (effect[1] == TypeDefs.strOfEffectType(TypeDefs.EffectType.GAMBLE)):
 				file.close()
-				return GamblingEcoEffect.new(effect[2], effect[3], effect[4], effect[5], effect[6], effect[7], effect[8])
-			elif (effect[1] == str(TypeDefs.EffectType.ECOEFFECT)):
+				print("Got HERE")
+				return GamblingEcoEffect.new(float(effect[2]), int(effect[3]), int(effect[4]), str(effect[5]), int(effect[6]), int(effect[7]), str(effect[8]))
+			elif (effect[1] == TypeDefs.strOfEffectType(TypeDefs.EffectType.ECOEFFECT)):
 				file.close()
-				var addToEconomyByRound = effect[3].split(",")
+				print("Got HERE2")
+				var addToEconomyByRoundAsStr = effect[3].split(",")
+				var addToEconomyByRound : Array[float] = [];
+				for i in range(0, addToEconomyByRoundAsStr.size()):
+					addToEconomyByRound.append(float(addToEconomyByRoundAsStr[i]))
 				if (effect.size() == 4):
 					var noteForEachRound = effect[3].split(",")
-					return EcoEffect.new(effect[2], addToEconomyByRound, noteForEachRound)
-				return EcoEffect.new(effect[2], addToEconomyByRound)
+					return EcoEffect.new(int(effect[2]), addToEconomyByRound, noteForEachRound)
+				return EcoEffect.new(int(effect[2]), addToEconomyByRound)
