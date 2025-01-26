@@ -53,3 +53,11 @@ static func playSFX(sfx : AudioStream, referenceObj : Node):
 	player.play();
 	await player.finished
 	player.queue_free()
+
+static func limitLinesTo(charLimit : int, text : String):
+	var res = ""
+	while (text.length() > 0):
+		var taken : int = min(charLimit, text.length());
+		res += text.substr(0, taken) + "\n"
+		text = text.substr(taken)
+	return res

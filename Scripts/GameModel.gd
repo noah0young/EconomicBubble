@@ -25,6 +25,7 @@ var currentPrompt: EcoPrompt
 @export var replyHolder : HBoxContainer;
 var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
 var curReplies : Array[Button] = [];
+const REPLY_TOOLTIP_CHARS : int = 50
 
 @export var economyBalance : float = 500;
 const DEBT_START_AMOUNT = 100;
@@ -36,7 +37,7 @@ var effects : Array[AbstractEcoEffect];
 
 func _ready():
 	uiManager.setDebt(getDebt(), true);
-	effects.append(EcoEffect.new(DEBT_START_AMOUNT, [0], ["Congradulations on your new job... but you're college degree has put you in debt... a lot of debt"]))
+	effects.append(EcoEffect.new(DEBT_START_AMOUNT, [0], ["Congratulations on your new job... but you're college degree has put you in debt... a lot of debt"]))
 	await endRound(true)
 
 func nextRound():
@@ -141,7 +142,9 @@ func addEffect(effect : AbstractEcoEffect) -> void:
 func getRoundNotes() -> Array[String]:
 	var noteArray : Array[String] = []
 	for effect in effects:
-		noteArray.append(effect.getNote())
+		var note = effect.getNote()
+		if (note != ""):
+			noteArray.append(note)
 	return noteArray;
 
 func endRound(initialTime : bool = false) -> void:
@@ -184,7 +187,8 @@ func showGameOver() -> void:
 
 func addReply(reply : Reply):
 	var newReply : Button = replyButtonPrefab.instantiate()
-	uiManager.setReplyText(newReply.get_node("RichTextLabel"), reply.text);
+	#uiManager.setReplyText(newReply.get_node("RichTextLabel"), reply.text);
+	newReply.tooltip_text = TypeDefs.limitLinesTo(REPLY_TOOLTIP_CHARS, reply.text)
 	curReplies.append(newReply);
 	newReply.pressed.connect(
 		func ():

@@ -26,13 +26,19 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -88.0
-offset_bottom = 13.0
+offset_left = 33.0
+offset_top = -132.0
+offset_right = -41.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[color=black][dropcap color=white outline_color=black outline_size=20]Hello"
+text = "[dropcap color=white outline_color=black outline_size=20]Hover[/dropcap]
+
+[dropcap color=white outline_color=black outline_size=20]to see[/dropcap]
+
+[dropcap color=white outline_color=black outline_size=20]reply[/dropcap]"
 scroll_active = false
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
