@@ -19,4 +19,5 @@ func getReplies(): # returns object replies
 	return self.replies
 
 func genPrompt(): # generates prompt
-	return
+	for n in range(0, replies.size()):
+		replies[n].genReply()

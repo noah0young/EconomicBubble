@@ -113,6 +113,7 @@ func clearReplies():
 func debugMakeReply():
 	Reply.new("Name", "Reply Text", EcoEffect.new(0, [], []), self).genReply();
 	getPrompt()
+	currentPrompt.genPrompt()
 	changeTextRich()
 
 func getPrompt():

@@ -1,3 +1,3 @@
-Test Reply 1|This is the Text!|GambleEffect
-Test Reply 2|This is the Text!|IncreaseEffect
-Test Reply 3|This is the Text!|DecreaseEffect
+Test Reply 1|This is the Text 1!|GambleEffect
+Test Reply 2|This is the Text 2!|IncreaseEffect
+Test Reply 3|This is the Text 3!|DecreaseEffect
