@@ -1,6 +1,8 @@
 extends Node
 class_name GameModel
 
+@export var animManager : AnimManager;
+
 const MAX_ECONOMY : float = 1000; 
 const MIN_ECONOMY : float = 0; 
 
@@ -21,6 +23,14 @@ var curReplies : Array[Button] = [];
 @export var debt : float = 100;
 @export var promptTextBox : RichTextLabel;
 var effects : Array[AbstractEcoEffect];
+
+func nextRound():
+	animManager.playDayStartAnim()
+	# Show Day Count Here in screen animation
+	await get_tree().create_timer(1.0).timeout
+	getPrompt()
+	currentPrompt.genPrompt()
+	changeTextRich()
 
 func getEcoState() -> TypeDefs.EcoState:
 	if (economyBalance >= MAX_ECONOMY):
@@ -63,7 +73,7 @@ func getEcoBURST() -> float:
 	return BURSTING_ECO_THRESHOLD;
 
 func changeTextRich():
-	promptTextBox.add_text(currentPrompt.text)
+	promptTextBox.set_text(currentPrompt.text)
 
 func addEffect(effect : AbstractEcoEffect) -> void:
 	effects.append(effect);
@@ -91,6 +101,7 @@ func endRound() -> void:
 	print(debt);
 	print("economyBalance:")
 	print(economyBalance);
+	nextRound()
 
 func addToDebt(val : float) -> void:
 	debt += val;
@@ -117,11 +128,6 @@ func clearReplies():
 	for reply in curReplies:
 		reply.queue_free()
 	curReplies = []
-
-func debugMakeReply():
-	getPrompt()
-	currentPrompt.genPrompt()
-	changeTextRich()
 
 func getPrompt():
 	currentPrompt = database.getRandom()
