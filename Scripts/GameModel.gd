@@ -3,6 +3,7 @@ class_name GameModel
 
 var roundNum = 0
 
+@export var uiManager : UI;
 @export var musicManager : BackgroundMusicManager;
 const DAY_TRANS_VOL = -10
 
@@ -31,6 +32,9 @@ var curReplies : Array[Button] = [];
 const PROMPT_TEXT_BBCODE : String = "[font_size={50}][center]"
 const TIME_BETWEEN_CHAR : float = 0.05
 var effects : Array[AbstractEcoEffect];
+
+func _ready():
+	await uiManager.setDebt(getDebt(), true);
 
 func nextRound():
 	musicManager.setTargetVolFade(isGoingPoorly(), DAY_TRANS_VOL);
@@ -128,6 +132,7 @@ func endRound() -> void:
 	await animManager.playHideUIPrompt()
 	clearPromptText();
 	clearReplies();
+	await uiManager.setDebt(getDebt());
 	for i in range(effects.size() - 1, -1, -1):
 		print("Applying Effect [" + str(i) + "]");
 		var effect = effects[i]
