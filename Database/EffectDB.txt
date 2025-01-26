@@ -1,5 +1,30 @@
-GambleEffect|GAMBLE|0.5|100|20|You Lost $100 and the Economy is down by a little.|300|10|YOU WIN! $300 and Economy is up a little!
-IncreaseEffect|ECOEFFECT|20|10,100|Debt goes up by $10 and Economy is up by a little.,Due to previous choices Economy is up by a lot!
-DecreaseEffect|ECOEFFECT|-20|-10,-200|Debt goes down by $20 and Economy is down by a little.,Due to previous choices Economy is down by a lot!
 YESBUBBLESDAYEFFECT|ECOEFFECT|1000|10|Mr. Bubbles Loves his new gift and decides not to pop the bubble.
 NOBUBBLESDAYEFFECT|ECOEFFECT|0|200,-400|Mr. Bubbles is VERY MAD, hes PUMPING.,Now Mr. Bubbles is DUMPING.
+PUMPEFFECT|ECOEFFECT|0|100|Economy is up by a lot!
+DUMPEFFECT|ECOEFFECT|0|-100|Economy is down by a lot!
+YESSUDSDAYEFFECT|ECOEFFECT|1000|10|Suds loves her new gift a lot!
+NOSUDSDAYEFFECT|ECOEFFECT|0|300,-600|Mr. Bubbles is VERY MAD, hes PUMPING.,Now Mr. Bubbles is DUMPING.
+YESSOAPSALESEFFECT|ECOEFFECT|1000|100|The Soap Industry is saved due to your investment!
+NOSOAPSALESEFFECT|ECOEFFECT|0|100|The Soap Industry is dying due to your inaction, and now people smell worse.
+SOAPENSTIENEFFECT|ECOEFFECT|0|300|Sopenstien is dominating the fields of battle and with your new allyship, they are investing heavily into your markets.
+BUBBLESBERGEFFECT|ECOEFFECT|0|-300|Bubblesberg is getting its shit rocked and now most of your market economy is wasted on ensuring they don't collapse.
+ORPHANHOSPITALEFFECT|ECOEFFECT|100|20|The Orphan hospital is saved!
+DOGORPHANAGEEFFECT|ECOEFFECT|100|20|The dog orphanage is saved!
+YFBIEFFECT|ECOEFFECT|0|200,-400,400,-400,400|A small investment at first, lets see where it goes.,Down 400?,Up 400?,Down 400?,Up 400?
+SFBIEFFECT|ECOEFFECT|-200000|0|His investment meant more to you then the economy 200000$ is alot.
+NFBIEFFECT|ECOEFFECT|0|0|No money in no money out.
+KEEPPAYEFFECT|ECOEFFECT|-20|0|Payed off 20$ of debt.
+INVESTPAYEFFECT|ECOEFFECT|0|1|Economy is up by a little.
+LOBBYEFFECT|ECOEFFECT|-50000|-100|Economy is down by a lot but $50000 is $50000.
+NOLOBBYEFFECT|ECOEFFECT|0|0|No money in no money out.
+STEALEFFECT|ECOEFFECT|-300000|-600|Economy is down by a shit ton! You made $300,000.
+NOSTEALEFFECT|ECOEFFECT|0|50|Economy went up naturally by a bit!
+WARBUBBLESEFFECT|ECOEFFECT|-1000|100|Mr. Bubbles pays you for your effort and the economy goes up a lot due to war time industrialization.
+NOWARBUBBLESEFFECT|ECOEFFECT|0|0|No money in no money out.
+POPEFFECT|ECOEFFECT|-20000000|-10000|YOU CRASHED THE ECONOMY although you are completely free of debt now.
+NOPOPEFFECT|ECOEFFECT|0|0|No money in no money out.
+GETGIFTEFFECT|ECOEFFECT|10000|100|Mr. Bubbles loves his expensive gifts to the point that the economy went up.
+NOGETGIFTEFFECT|ECOEFFECT|0|-100|Out of spite Mr. bubbles made the economy go down by a lot!
+YESINFLATEFFECT|ECOEFFECT|0|700|Economy is up by a shit ton!
+PRINTYOURDEBTEFFECT|ECOEFFECT|1000000|400|Economy is up by a lot and you just made a lot of money!
+NOINFLATEFFECT|ECOEFFECT|0|-100|Economy is down by a lot!

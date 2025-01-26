@@ -1,2 +1,14 @@
-TestPrompt|This is a test prompt!|Test Reply 1|Test Reply 2|Test Reply 3
 BUBBLESDAY|HAR HAR HAR, It is I Mr. Bubbles and it is MY BIRTHDAY, I was hoping to get a nice birthday gift from you for MY BIRTHDAY.|YESBUBBLESDAY|NOBUBBLESDAY
+PD|The economy is in a rough spot right now. The president is asking you to take action that you see fit. Should we pump or dump?|PDPUMP|PDDUMP
+SUDSDAY|HAR HAR HAR, It is I Mr. Bubbles and it is MY DAUGHTER SUDS’ BIRTHDAY, I was hoping you would get her a nice birthday gift…    or else.|YESSUDSDAY|NOSUDSDAY
+SOAPSALES|The soap industry is taking a hit right now. The president is asking that you stabilize it before people stop bathing.|YESSOAPSALES|NOSOAPSALES
+WARONBUBBLES|The nation of Soapenstien and Bubblesberg are at eachothers throats right. Pretty soon they will go to war, and depending on what side we choose, the bubble market could take a hit. So now it's your job, who are we fighting for? The blood will be on your hands.|SOAPENSTIEN|BUBBLESBERG
+INVESTMENT DAY|Today is the day where we send out our rather large, high interest rate loans out to small businesses. Only two mom and pop shows asked for them, so which one gets the funds, and which one will be closing their doors come winter?|ORPHANHOSPITAL|DOGORPHANAGE
+FLAPPYBIRD|IT IS I, DONG NGUYEN, the inventor of the flappy bird, if it is alright, I would love to invest into Bubble Dollars.|YFBI|SFBI|NFBI
+PAYDAY|Here's your paycheck, though if you want you could be the best bubble protector ever and put it all back into the economy, or not, it's all up to you.|KEEPPAY|INVESTPAY
+BUBBLESLOBBY|HAR HAR HAR, It is I Mr. Bubbles, and I have a gift, just for you, with lots of strings attached! I am LOBBYING you, I need you to pass a law that bans all bubble companies besides mine, do it and I'll give you lots and LOTS of MONEY.|LOBBY|NOLOBBY
+STEAL|Your handler left you alone in the room, with full access to the bubble market, no one would notice if maybe you were to take some money out of the economy to pay off your debt.|STEAL|NOSTEAL
+BUBBLESWAR|HAR HAR HAR, It is I Mr. Bubbles and I want you to convince the president to invade Bubblesberg. They didn’t give me a birthday gift on MY BIRTHDAY.|WARBUBBLES|NOWARBUBBLES
+NEEDLE|You could pop the bubble right now, it might be enough to clear your debt, just take out all the money invested in it in one go, transfer it all to your bank account and leave.|POP|NOPOP
+BIRTHDAY|HAR HAR HAR, It is I Mr. Bubbles and I heard YOUR BIRTHDAY IS COMING UP SOON, sorry, but all my money is being spent maintaining my investments, but I do want to get you a birthday gift… I KNOW, you give me your money to buy you a BIRTHDAY GIFT, sounds great right?|GETGIFT|NOGETGIFT
+BUBBLEBLOWER|The economy is taking a dive right now, you can't tell if the bubble is about to pop or not, all you know is you have unrestricted access to a money printer and the bubble market, do you flood the economy with fresh bubbles?|YESINFLAT|PRINTYOURDEBT|NOINFLAT

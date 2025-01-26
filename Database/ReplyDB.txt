@@ -1,5 +1,30 @@
-Test Reply 1|This is the Text 1!|GambleEffect
-Test Reply 2|This is the Text 2!|IncreaseEffect
-Test Reply 3|This is the Text 3!|DecreaseEffect
 YESBUBBLESDAY|Despite your massive debt, you end up getting Mr. Bubbles a gift|YESBUBBLESDAYEFFECT
 NOBUBBLESDAY|You pockets are feeling quite empty, so you end up refusing Mr. Bubbles request|NOBUBBLESDAYEFFECT
+PDPUMP|You decide the best way to save the bubble is to pump|PUMPEFFECT
+PDDUMP|You decide the best way to save the bubble is to dump|DUMPEFFECT
+YESSUDSDAY|Every deserves a gift on their birthday, especially after their father makes threats|YESSUDSDAYEFFECT
+NOSUDSDAY|You aren’t close enough to Suds to get her a birthday gift, plus Mr. Bubbles’ threat just angered you|NOSUDSDAYEFFECT
+YESSOAPSALES|Investing in the soap industry is the only way to save it|YESSOAPSALESEFFECT
+NOSOAPSALES|Social Darwinism, companies live and die, lets see if the soap really is needed|NOSOAPSALESEFFECT
+SOAPENSTIEN|Soapenstien needs us more than ever, we cannot let out ally fight alone|SOAPENSTIENEFFECT
+BUBBLESBERG|Bubblesberg was attacked unjustly, we must stand with the innocent|BUBBLESBERGEFFECT
+ORPHANHOSPITAL|The Orphan Hospital has to take priority, think of the children|ORPHANHOSPITALEFFECT
+DOGORPHANAGE|Fuck them kids, we need to take care of the orphaned dogs out on the streets|DOGORPHANAGEEFFECT
+YFBI|Take the flappy bird money and invest it for him|YFBIEFFECT
+SFBI|Take the flappy bird money and steal it from him|SFBIEFFECT
+NFBI|Refuse the money from the man who made flappy bird|NFBIEFFECT
+KEEPPAY|Its your pay day, why would you use your pay for anything other than you|KEEPPAYEFFECT
+INVESTPAY|The economy needs you more then you need food, invest it all|INVESTPAYEFFECT
+LOBBY|Mr. Bubbles needs you now more than ever, plus he's paying, a legal monopoly it shall be|LOBBYEFFECT
+NOLOBBY|The free market is the most important part of the Bubble market, you can’t let Mr. Bubbles own it all|NOLOBBYEFFECT
+STEAL|A little theft never hurt anyone|STEALEFFECT
+NOSTEAL|Stealing from here is the same as kicking families out of their house, it has too much impact|NOSTEALEFFECT
+WARBUBBLES|The president must know the evils of Bubblesberg and declare war now|WARBUBBLESEFFECT
+NOWARBUBBLES|Why the hell would we go to war just cause they forgot a birthday gift?|NOWARBUBBLESEFFECT
+POP|Lets end this bubble now|POPEFFECT
+NOPOP|Its my job to protect the bubble, not pop it|NOPOPEFFECT
+GETGIFT|Its your own birthday, why shouldn’t you get a gift, even if you have to pay for it|GETGIFTEFFECT
+NOGETGIFT|You would rather work towards paying off your debt then getting a birthday gift|NOGETGIFTEFFECT
+YESINFLAT|If the market needs money, just print more|YESINFLATEFFECT
+PRINTYOURDEBT|With control of the printers, you can pay off your debt and then some, you could be a billionaire like Mr. Bubbles|PRINTYOURDEBTEFFECT
+NOINFLAT|Printing money because you are poor only ever makes you worse off, don’t print|NOINFLATEFFECT
