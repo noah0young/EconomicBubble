@@ -20,5 +20,3 @@ func getReplies(): # returns object replies
 
 func genPrompt(): # generates prompt
 	return
-	# I am very sick rn due to my own making, so i cant write this out
-	# But basically, it makes the game play the prompt onto the screen
