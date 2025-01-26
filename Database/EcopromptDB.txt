@@ -1,1 +1,2 @@
 TestPrompt|This is a test prompt!|Test Reply 1|Test Reply 2|Test Reply 3
+BUBBLESDAY|HAR HAR HAR, It is I Mr. Bubbles and it is MY BIRTHDAY, I was hoping to get a nice birthday gift from you for MY BIRTHDAY.|YESBUBBLESDAY|NOBUBBLESDAY

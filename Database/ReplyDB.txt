@@ -1,3 +1,5 @@
 Test Reply 1|This is the Text 1!|GambleEffect
 Test Reply 2|This is the Text 2!|IncreaseEffect
 Test Reply 3|This is the Text 3!|DecreaseEffect
+YESBUBBLESDAY|Despite your massive debt, you end up getting Mr. Bubbles a gift|YESBUBBLESDAYEFFECT
+NOBUBBLESDAY|You pockets are feeling quite empty, so you end up refusing Mr. Bubbles request|NOBUBBLESDAYEFFECT
