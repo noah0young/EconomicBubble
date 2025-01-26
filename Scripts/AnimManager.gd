@@ -1,6 +1,7 @@
 extends Node2D
 class_name AnimManager
 
+@export var uiAnimPlayer : AnimationPlayer;
 @export var winLoseAnimPlayer : AnimationPlayer;
 @export var dayStartAnimPlayer : AnimationPlayer;
 @export var newsAnimPlayer : AnimationPlayer;
@@ -36,3 +37,15 @@ func playWinAnim():
 
 func playLoseAnim():
 	winLoseAnimPlayer.play("Lose")
+
+func playShowUIPrompt():
+	uiAnimPlayer.play("SlideTextBoxIn")
+	await get_tree().create_timer(1).timeout
+
+func playShowUIReplies():
+	uiAnimPlayer.play("SlideRepliesIn")
+	await get_tree().create_timer(1).timeout
+	
+func playHideUIPrompt():
+	uiAnimPlayer.play("SlideTextBoxOut")
+	await get_tree().create_timer(1).timeout
