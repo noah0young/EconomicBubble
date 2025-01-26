@@ -30,6 +30,7 @@ static var possibleCheeseManSFX : Array[AudioStream] = [
 	preload("res://SFX/Cheese Man 3.wav")
 ]
 
+static var bubblePopSFX = preload("res://SFX/Bubble Pop.wav")
 static var moneyUpSFX = preload("res://SFX/Money Up.wav")
 static var moneyDownSFX = preload("res://SFX/Money Down.wav")
 

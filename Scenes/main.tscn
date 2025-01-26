@@ -757,7 +757,7 @@ follow_viewport_enabled = true
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
 
-[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("model", "debtValueLabel")]
+[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("musicManager", "model", "debtValueLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -765,6 +765,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_aq7d8")
+musicManager = NodePath("../../../BackgroundMusic")
 model = NodePath("../../../GameModel")
 debtValueLabel = NodePath("ColorRect/DebtValueLabel")
 
@@ -1031,6 +1032,7 @@ scale = Vector2(2, 2)
 zoom = Vector2(0.6, 0.6)
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
 

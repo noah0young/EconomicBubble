@@ -1,6 +1,7 @@
 extends Control
 class_name UI
 
+@export var musicManager : BackgroundMusicManager;
 @export var model : GameModel;
 const debtValueBBCode : String = "[font_size={70}][center][color=#570004]"
 @export var debtValueLabel : RichTextLabel;
@@ -13,6 +14,8 @@ var debtCurVal : float;
 var targetDebtValue : float;
 var usingTargetDebtVal : bool;
 signal finishedUpdatingDebtSignal;
+
+const REPLY_BBCODE : String = "[color=black][dropcap color=white outline_color=black outline_size=20]"
 
 func _ready() -> void:
 	debtCurVal = model.getDebt();
@@ -47,7 +50,13 @@ func setDebt(val : float, immediate : bool = false):
 		_setDebtText(val)
 		usingTargetDebtVal = false;
 	else:
+		if (debtCurVal == val):
+			return
+		musicManager.playMoneySFX(val < debtCurVal);
 		curDebtMoveSpeed = BASE_DEBT_MOVE_SPEED
 		targetDebtValue = val
 		usingTargetDebtVal = true;
 		await finishedUpdatingDebtSignal
+
+func setReplyText(textLabel : RichTextLabel, text : String):
+		textLabel.set_text(REPLY_BBCODE + text)

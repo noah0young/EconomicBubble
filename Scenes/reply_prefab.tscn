@@ -1,12 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cidt6d1llhvtt"]
+[gd_scene load_steps=3 format=3 uid="uid://cidt6d1llhvtt"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonFX.gd" id="1_2grs2"]
+[ext_resource type="Texture2D" uid="uid://c8iy05626qxw8" path="res://Art/Paper.png" id="1_k2avt"]
 
-[node name="ReplyPrefab" type="Button"]
+[node name="ReplyPrefab" type="Button" node_paths=PackedStringArray("image")]
+self_modulate = Color(0, 0, 0, 1)
 tooltip_text = "uegfiugweilhfikh"
-text = "Hello"
+icon = ExtResource("1_k2avt")
 script = ExtResource("1_2grs2")
+image = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_k2avt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -88.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[color=black][dropcap color=white outline_color=black outline_size=20]Hello"
+scroll_active = false
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
