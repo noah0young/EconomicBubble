@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=36 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -10,7 +10,9 @@
 [ext_resource type="Script" path="res://Scripts/ButtonFX.gd" id="7_eupm5"]
 [ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_lxp5v"]
 [ext_resource type="Script" path="res://Scripts/GameModel.gd" id="8_eis76"]
+[ext_resource type="Texture2D" uid="uid://c73ttimkm5d4l" path="res://Art/Bubble/Untitled_Artwork-1.png" id="8_kr7g5"]
 [ext_resource type="Script" path="res://Scripts/AnimManager.gd" id="9_5hjtg"]
+[ext_resource type="Script" path="res://Scripts/bubble.gd" id="9_fjgqc"]
 [ext_resource type="AudioStream" uid="uid://bq7arm3083sm6" path="res://Music/Lighter Theme.wav" id="11_fcd6k"]
 [ext_resource type="Script" path="res://Scripts/BackgroundMusicManager.gd" id="11_ug56f"]
 [ext_resource type="AudioStream" uid="uid://st8i4p0opih1" path="res://Music/Darker Theme.wav" id="12_a8u76"]
@@ -757,7 +759,31 @@ follow_viewport_enabled = true
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
 
-[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("musicManager", "model", "debtValueLabel")]
+[node name="EconomyBubble" type="Sprite2D" parent="CanvasLayer/Background" node_paths=PackedStringArray("ui", "gameModel")]
+position = Vector2(-557, -157)
+scale = Vector2(1.36328, 2.39062)
+texture = ExtResource("8_kr7g5")
+script = ExtResource("9_fjgqc")
+ui = NodePath("../UI")
+gameModel = NodePath("../../../GameModel")
+
+[node name="StatusTitle" type="RichTextLabel" parent="CanvasLayer/Background/EconomyBubble"]
+offset_left = -109.295
+offset_top = -48.1046
+offset_right = 290.705
+offset_bottom = -8.10458
+bbcode_enabled = true
+text = "[dropcap font_size=30 outline_size=black outline_size=10]Economy Status:"
+
+[node name="StatusValueLabel" type="RichTextLabel" parent="CanvasLayer/Background/EconomyBubble"]
+offset_left = -194.384
+offset_top = -6.69281
+offset_right = 205.616
+offset_bottom = 93.3072
+bbcode_enabled = true
+text = "[center][outline_size=10][font_size=50][color=green]STABLE"
+
+[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("musicManager", "model", "debtValueLabel", "economyStatusLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -768,6 +794,7 @@ script = ExtResource("7_aq7d8")
 musicManager = NodePath("../../../BackgroundMusic")
 model = NodePath("../../../GameModel")
 debtValueLabel = NodePath("ColorRect/DebtValueLabel")
+economyStatusLabel = NodePath("../EconomyBubble/StatusValueLabel")
 
 [node name="Control" type="Control" parent="CanvasLayer/Background/UI"]
 layout_mode = 1

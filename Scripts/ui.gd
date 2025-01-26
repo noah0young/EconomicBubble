@@ -17,6 +17,17 @@ signal finishedUpdatingDebtSignal;
 
 const REPLY_BBCODE : String = "[color=black][dropcap color=white outline_color=black outline_size=20]"
 
+@export var economyStatusLabel : RichTextLabel;
+const ECONOMY_STATUS_BBCODE : String = "[center][outline_size=10][font_size=50]"
+var prevEcoStatus = -1;
+
+const BURSTING_STATUS_TEXT : String = "[color=#ffa408]BURSTING"
+const GOOD_STATUS_TEXT : String = "[color=#5ff04f]GOOD"
+const STABLE_STATUS_TEXT : String = "[color=#7bed09]STABLE"
+const BAD_STATUS_TEXT : String = "[color=#ffa408]BAD"
+const POPPING_STATUS_TEXT : String = "[color=#ff0011]POPPING"
+const POPPED_STATUS_TEXT : String = "[color=#6b0007]POPPED"
+
 func _ready() -> void:
 	debtCurVal = model.getDebt();
 
@@ -60,3 +71,23 @@ func setDebt(val : float, immediate : bool = false):
 
 func setReplyText(textLabel : RichTextLabel, text : String):
 		textLabel.set_text(REPLY_BBCODE + text)
+
+func setEcoBubbleStatus(status : TypeDefs.EcoState):
+	if (status == prevEcoStatus):
+		return
+	prevEcoStatus = status
+	var newText : String = "";
+	match status:
+		TypeDefs.EcoState.BURSTING:
+			newText = BURSTING_STATUS_TEXT;
+		TypeDefs.EcoState.GOOD:
+			newText = GOOD_STATUS_TEXT;
+		TypeDefs.EcoState.STABLE:
+			newText = STABLE_STATUS_TEXT;
+		TypeDefs.EcoState.BAD:
+			newText = BAD_STATUS_TEXT;
+		TypeDefs.EcoState.POPPING:
+			newText = POPPING_STATUS_TEXT;
+		TypeDefs.EcoState.POPPED:
+			newText = POPPED_STATUS_TEXT;
+	economyStatusLabel.set_text(ECONOMY_STATUS_BBCODE + newText)
