@@ -19,6 +19,5 @@ func getReplies(): # returns object replies
 	return self.replies
 
 func genPrompt(): # generates prompt
-	return
-	# I am very sick rn due to my own making, so i cant write this out
-	# But basically, it makes the game play the prompt onto the screen
+	for n in range(0, replies.size()):
+		replies[n].genReply()
