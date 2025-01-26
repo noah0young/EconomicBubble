@@ -45,8 +45,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Animation" id="Animation_xv0e8"]
-resource_name = "Win"
+[sub_resource type="Animation" id="Animation_oayob"]
+resource_name = "Lose"
 length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -58,12 +58,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0.788235, 0.231373, 0), Color(0, 0.788235, 0.231373, 1), Color(0, 0.788235, 0.231373, 1)]
+"values": [Color(0.792157, 0, 0.2, 0), Color(0.793719, 0, 0.198248, 1), Color(0.793719, 0, 0.198248, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WinTextLabel:modulate")
+tracks/1/path = NodePath("LoseTextLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -112,8 +112,8 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_oayob"]
-resource_name = "Lose"
+[sub_resource type="Animation" id="Animation_xv0e8"]
+resource_name = "Win"
 length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -125,12 +125,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0.792157, 0, 0.2, 0), Color(0.793719, 0, 0.198248, 1), Color(0.793719, 0, 0.198248, 1)]
+"values": [Color(0, 0.788235, 0.231373, 0), Color(0, 0.788235, 0.231373, 1), Color(0, 0.788235, 0.231373, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LoseTextLabel:modulate")
+tracks/1/path = NodePath("WinTextLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -484,6 +484,47 @@ follow_viewport_enabled = true
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
 
+[node name="UI" type="Control" parent="CanvasLayer/Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/Background/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/UI/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 164.0
+offset_right = -130.0
+offset_bottom = 494.0
+grow_horizontal = 2
+color = Color(0.312466, 0.312466, 0.312466, 0.45098)
+
+[node name="PromptTextLabel" type="RichTextLabel" parent="CanvasLayer/Background/UI/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
 [node name="DayCountOverlay" type="Control" parent="CanvasLayer/Background"]
 layout_mode = 3
 anchors_preset = 15
@@ -667,21 +708,6 @@ alignment = 1
 scale = Vector2(2, 2)
 zoom = Vector2(0.6, 0.6)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -455.0
-offset_top = -537.0
-offset_right = -179.0
-offset_bottom = -352.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="PromptTextLabel" type="RichTextLabel" parent="Control"]
-layout_mode = 1
-offset_right = 915.0
-offset_bottom = 195.0
-
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
@@ -692,7 +718,7 @@ musicManager = NodePath("../BackgroundMusic")
 animManager = NodePath("../AnimManager")
 newsContButton = NodePath("../CanvasLayer/Background/NewsOverlay/NewsContButton")
 replyHolder = NodePath("../CanvasLayer/HBoxContainer")
-promptTextBox = NodePath("../Control/PromptTextLabel")
+promptTextBox = NodePath("../CanvasLayer/Background/UI/Control/ColorRect/PromptTextLabel")
 
 [node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("winLoseAnimPlayer", "dayStartAnimPlayer", "newsAnimPlayer", "dayTextLabel", "newsTextLabel")]
 script = ExtResource("9_5hjtg")
