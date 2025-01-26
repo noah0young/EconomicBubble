@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=18 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -102,6 +102,166 @@ _data = {
 "RESET": SubResource("Animation_rj3m2")
 }
 
+[sub_resource type="Animation" id="Animation_xw3y8"]
+resource_name = "ShowNews"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewsTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.766667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewsText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewsContButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_td70j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewsTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewsText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewsContButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qsodk"]
+resource_name = "HideNews"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewsTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewsText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.433333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewsContButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6raae"]
+_data = {
+"HideNews": SubResource("Animation_qsodk"),
+"RESET": SubResource("Animation_td70j"),
+"ShowNews": SubResource("Animation_xw3y8")
+}
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("gameModel")]
 script = ExtResource("1_expxs")
 gameModel = NodePath("GameModel")
@@ -158,6 +318,74 @@ libraries = {
 "": SubResource("AnimationLibrary_r5p4q")
 }
 
+[node name="NewsOverlay" type="Control" parent="CanvasLayer/Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/NewsOverlay"]
+modulate = Color(1, 1, 1, 0)
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16593, 0.130564, 0.131203, 1)
+
+[node name="NewsTitle" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -2.0
+offset_top = 83.0
+offset_right = -2.0
+offset_bottom = 371.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font_size={150}][center]Today's News"
+fit_content = true
+scroll_active = false
+
+[node name="NewsText" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -4.0
+offset_top = 403.0
+offset_right = -4.0
+offset_bottom = 859.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font_size={100}][center]Congradulations on your new job... but you're college degree has put you in debt... a lot of debt"
+fit_content = true
+scroll_active = false
+
+[node name="NewsAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background/NewsOverlay"]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_6raae")
+}
+
+[node name="NewsContButton" type="Button" parent="CanvasLayer/Background/NewsOverlay"]
+visible = false
+layout_mode = 0
+offset_left = 652.0
+offset_top = 861.0
+offset_right = 1271.0
+offset_bottom = 1038.0
+text = "Continue News"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = -307.0
 offset_top = 7.0
@@ -188,12 +416,14 @@ offset_bottom = 195.0
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
 
-[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("animManager", "replyHolder", "promptTextBox")]
+[node name="GameModel" type="Node" parent="." node_paths=PackedStringArray("animManager", "newsContButton", "replyHolder", "promptTextBox")]
 script = ExtResource("8_eis76")
 animManager = NodePath("../AnimManager")
+newsContButton = NodePath("../CanvasLayer/Background/NewsOverlay/NewsContButton")
 replyHolder = NodePath("../CanvasLayer/HBoxContainer")
 promptTextBox = NodePath("../Control/PromptTextLabel")
 
-[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("dayStartAnimPlayer")]
+[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("dayStartAnimPlayer", "newsAnimPlayer")]
 script = ExtResource("9_5hjtg")
 dayStartAnimPlayer = NodePath("../CanvasLayer/Background/DayStartAnimationPlayer")
+newsAnimPlayer = NodePath("../CanvasLayer/Background/NewsOverlay/NewsAnimationPlayer")
