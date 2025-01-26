@@ -102,6 +102,7 @@ func getEcoBURST() -> float:
 	return BURSTING_ECO_THRESHOLD;
 
 func showPrompt():
+	await animManager.playShowUIPrompt()
 	var toDisplay : String = currentPrompt.text;
 	# Talk through prompt
 	for i in range(0, toDisplay.length()):
@@ -109,6 +110,10 @@ func showPrompt():
 		promptTextBox.set_text(PROMPT_TEXT_BBCODE + toDisplay.substr(0, i))
 		await get_tree().create_timer(TIME_BETWEEN_CHAR).timeout
 	currentPrompt.genPrompt()
+	await animManager.playShowUIReplies()
+
+func clearPromptText():
+	promptTextBox.set_text("")
 
 func addEffect(effect : AbstractEcoEffect) -> void:
 	effects.append(effect);
@@ -120,6 +125,8 @@ func getRoundNotes() -> Array[String]:
 	return noteArray;
 
 func endRound() -> void:
+	await animManager.playHideUIPrompt()
+	clearPromptText();
 	clearReplies();
 	for i in range(effects.size() - 1, -1, -1):
 		print("Applying Effect [" + str(i) + "]");
@@ -151,6 +158,8 @@ func isGameOver() -> bool:
 	return debt <= 0 or economyBalance <= MIN_ECONOMY or economyBalance >= MAX_ECONOMY
 
 func showGameOver() -> void:
+	# Updates music
+	musicManager.startMusic(isGoingPoorly());
 	if (debt <= 0):
 		animManager.playWinAnim();
 	else:

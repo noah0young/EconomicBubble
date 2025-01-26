@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=33 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -45,6 +45,255 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_erh2x"]
+resource_name = "SlideTextBoxIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2000, 0), Vector2(0, 0), Vector2(164, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1626, 494)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hkhmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2000, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(653, -1000)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1626, 494)]
+}
+
+[sub_resource type="Animation" id="Animation_27ysu"]
+resource_name = "SlideTextBoxOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1626, 494), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6.28319, 1.5708, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(164, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HBoxContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(653, 547), Vector2(653, 547), Vector2(653, 2000)]
+}
+
+[sub_resource type="Animation" id="Animation_x0g7i"]
+resource_name = "SlideRepliesIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(653, -1000), Vector2(653, 300), Vector2(653, 547)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ku3o"]
+_data = {
+"RESET": SubResource("Animation_hkhmu"),
+"SlideRepliesIn": SubResource("Animation_x0g7i"),
+"SlideTextBoxIn": SubResource("Animation_erh2x"),
+"SlideTextBoxOut": SubResource("Animation_27ysu")
+}
+
+[sub_resource type="Animation" id="Animation_m3lgu"]
+resource_name = "DayStart"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1.86667, 2.33333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.06667, 2.53333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_rj3m2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5p4q"]
+_data = {
+"DayStart": SubResource("Animation_m3lgu"),
+"RESET": SubResource("Animation_rj3m2")
+}
+
 [sub_resource type="Animation" id="Animation_oayob"]
 resource_name = "Lose"
 length = 3.0
@@ -71,6 +320,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_m47mx"]
@@ -111,6 +372,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_xv0e8"]
 resource_name = "Win"
@@ -139,73 +412,24 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gpj4h"]
 _data = {
 "Lose": SubResource("Animation_oayob"),
 "RESET": SubResource("Animation_m47mx"),
 "Win": SubResource("Animation_xv0e8")
-}
-
-[sub_resource type="Animation" id="Animation_m3lgu"]
-resource_name = "DayStart"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 1.86667, 2.33333, 2.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DayTextLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.566667, 1.06667, 2.53333, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_rj3m2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DayTextLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5p4q"]
-_data = {
-"DayStart": SubResource("Animation_m3lgu"),
-"RESET": SubResource("Animation_rj3m2")
 }
 
 [sub_resource type="Animation" id="Animation_jw0mn"]
@@ -257,6 +481,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_152sc"]
@@ -360,6 +596,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_td70j"]
 length = 0.001
@@ -410,6 +658,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_xw3y8"]
@@ -462,6 +722,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6raae"]
 _data = {
@@ -510,11 +782,11 @@ size_flags_vertical = 0
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 164.0
-offset_right = -130.0
+offset_left = -2000.0
+offset_right = -2294.0
 offset_bottom = 494.0
 grow_horizontal = 2
-color = Color(0.312466, 0.312466, 0.312466, 0.45098)
+color = Color(0.313726, 0.313726, 0.313726, 0.392157)
 
 [node name="PromptTextLabel" type="RichTextLabel" parent="CanvasLayer/Background/UI/Control/ColorRect"]
 layout_mode = 1
@@ -525,7 +797,26 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Background/UI/Control"]
+offset_left = 653.0
+offset_top = -1000.0
+offset_right = 1254.0
+offset_bottom = -569.0
+alignment = 1
+
+[node name="UIAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background/UI/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_2ku3o")
+}
+
+[node name="DayStartAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background"]
+root_node = NodePath("../DayCountOverlay")
+libraries = {
+"": SubResource("AnimationLibrary_r5p4q")
+}
+
 [node name="DayCountOverlay" type="Control" parent="CanvasLayer/Background"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -563,7 +854,14 @@ text = "[font_size={200}][center]Day 1"
 fit_content = true
 scroll_active = false
 
+[node name="WinLoseAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background"]
+root_node = NodePath("../WinLoseOverlay")
+libraries = {
+"": SubResource("AnimationLibrary_gpj4h")
+}
+
 [node name="WinLoseOverlay" type="Control" parent="CanvasLayer/Background"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -617,18 +915,15 @@ text = "[font_size={200}][center][tornado]The economy bubble has Popped"
 fit_content = true
 scroll_active = false
 
-[node name="WinLoseAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background/WinLoseOverlay"]
+[node name="NewsAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background"]
+reset_on_save = false
+root_node = NodePath("../NewsOverlay")
 libraries = {
-"": SubResource("AnimationLibrary_gpj4h")
-}
-
-[node name="DayStartAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background"]
-root_node = NodePath("../DayCountOverlay")
-libraries = {
-"": SubResource("AnimationLibrary_r5p4q")
+"": SubResource("AnimationLibrary_6raae")
 }
 
 [node name="NewsOverlay" type="Control" parent="CanvasLayer/Background"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -641,7 +936,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/NewsOverlay"]
-modulate = Color(1, 1, 1, 0)
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
@@ -652,7 +946,6 @@ grow_vertical = 2
 color = Color(0.16593, 0.130564, 0.131203, 1)
 
 [node name="NewsTitle" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -667,7 +960,6 @@ fit_content = true
 scroll_active = false
 
 [node name="NewsText" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -681,28 +973,24 @@ text = "[font_size={100}][center]Congradulations on your new job... but you're c
 fit_content = true
 scroll_active = false
 
-[node name="NewsAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background/NewsOverlay"]
-reset_on_save = false
-libraries = {
-"": SubResource("AnimationLibrary_6raae")
-}
-
 [node name="NewsContButton" type="Button" parent="CanvasLayer/Background/NewsOverlay"]
-visible = false
 layout_mode = 0
 offset_left = 652.0
 offset_top = 861.0
 offset_right = 1271.0
 offset_bottom = 1038.0
-text = "Continue News"
 script = ExtResource("7_eupm5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = -307.0
-offset_top = 7.0
-offset_right = 294.0
-offset_bottom = 438.0
-alignment = 1
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay/NewsContButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[font_size={100}][center][pulse]Continue"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
@@ -717,14 +1005,15 @@ script = ExtResource("8_eis76")
 musicManager = NodePath("../BackgroundMusic")
 animManager = NodePath("../AnimManager")
 newsContButton = NodePath("../CanvasLayer/Background/NewsOverlay/NewsContButton")
-replyHolder = NodePath("../CanvasLayer/HBoxContainer")
+replyHolder = NodePath("../CanvasLayer/Background/UI/Control/HBoxContainer")
 promptTextBox = NodePath("../CanvasLayer/Background/UI/Control/ColorRect/PromptTextLabel")
 
-[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("winLoseAnimPlayer", "dayStartAnimPlayer", "newsAnimPlayer", "dayTextLabel", "newsTextLabel")]
+[node name="AnimManager" type="Node2D" parent="." node_paths=PackedStringArray("uiAnimPlayer", "winLoseAnimPlayer", "dayStartAnimPlayer", "newsAnimPlayer", "dayTextLabel", "newsTextLabel")]
 script = ExtResource("9_5hjtg")
-winLoseAnimPlayer = NodePath("../CanvasLayer/Background/WinLoseOverlay/WinLoseAnimationPlayer")
+uiAnimPlayer = NodePath("../CanvasLayer/Background/UI/Control/UIAnimationPlayer")
+winLoseAnimPlayer = NodePath("../CanvasLayer/Background/WinLoseAnimationPlayer")
 dayStartAnimPlayer = NodePath("../CanvasLayer/Background/DayStartAnimationPlayer")
-newsAnimPlayer = NodePath("../CanvasLayer/Background/NewsOverlay/NewsAnimationPlayer")
+newsAnimPlayer = NodePath("../CanvasLayer/Background/NewsAnimationPlayer")
 dayTextLabel = NodePath("../CanvasLayer/Background/DayCountOverlay/DayTextLabel")
 newsTextLabel = NodePath("../CanvasLayer/Background/NewsOverlay/NewsText")
 
