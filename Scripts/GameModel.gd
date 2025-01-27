@@ -28,7 +28,7 @@ var curReplies : Array[Button] = [];
 const REPLY_TOOLTIP_CHARS : int = 50
 
 @export var economyBalance : float = 500;
-const DEBT_START_AMOUNT = 100;
+const DEBT_START_AMOUNT = 1000000;
 @export var debt : float = 0;
 @export var promptTextBox : RichTextLabel;
 const PROMPT_TEXT_BBCODE : String = "[font_size={50}][center]"
@@ -38,23 +38,9 @@ var effects : Array[AbstractEcoEffect];
 func _ready():
 	uiManager.setDebt(getDebt(), true);
 	effects.append(EcoEffect.new(DEBT_START_AMOUNT, [0], ["Congratulations on your new job... but you're college degree has put you in debt... a lot of debt"]))
+	effects.append(EcoEffect.new(0, [0], ["But at least your job puts you in charge of the Economic (bubble)"]))
+	effects.append(EcoEffect.new(0, [0], ["... Would anyone notice if some money were to disappear ...?"]))
 	await endRound(true)
-
-func nextRound():
-	musicManager.setTargetVolFade(isGoingPoorly(), DAY_TRANS_VOL);
-	roundNum += 1;
-	# Show Day Count Here in screen animation
-	await animManager.playDayStartAnim(roundNum)
-	musicManager.startMusic(isGoingPoorly());
-	# Show News in screen animation
-	await allNews();
-	
-	# this line is just for the first round, when you see your initial debt appear
-	await uiManager.setDebt(getDebt(), false);
-	
-	incrementEffectRound()
-	getPrompt()
-	showPrompt()
 
 func incrementEffectRound():
 	for i in range(effects.size() - 1, -1, -1):
@@ -157,14 +143,27 @@ func endRound(initialTime : bool = false) -> void:
 		var effect = effects[i]
 		effect.apply(self);
 	economyBalance = max(min(economyBalance, MAX_ECONOMY), MIN_ECONOMY)
-	print("Round End")
-	print("debt:")
-	print(debt);
-	print("economyBalance:")
-	print(economyBalance);
+	nextRound()
+
+func nextRound():
+	musicManager.setTargetVolFade(isGoingPoorly(), DAY_TRANS_VOL);
+	roundNum += 1;
+	# Show Day Count Here in screen animation
+	await animManager.playDayStartAnim(roundNum)
+	musicManager.startMusic(isGoingPoorly());
+	# Show News in screen animation
+	await allNews();
+	
+	# this line is just for the first round, when you see your initial debt appear
+	await uiManager.setDebt(getDebt(), false);
+	
+	incrementEffectRound()
 	if (!isGameOver()):
-		nextRound()
+		# continue game
+		getPrompt()
+		showPrompt()
 	else:
+		# finish game
 		showGameOver()
 
 func addToDebt(val : float) -> void:

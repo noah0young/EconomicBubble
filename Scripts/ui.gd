@@ -6,6 +6,7 @@ class_name UI
 const debtValueBBCode : String = "[font_size={70}][center][color=#570004]"
 @export var debtValueLabel : RichTextLabel;
 
+const MAX_TIME_TO_MOVE_DEBT = 10; # Max seconds to move debt
 const BASE_DEBT_MOVE_SPEED = 10
 const DEBT_MOVE_SPEED_ACC = 1
 var curDebtMoveSpeed;
@@ -18,15 +19,15 @@ signal finishedUpdatingDebtSignal;
 const REPLY_BBCODE : String = "[color=black][dropcap color=white outline_color=black outline_size=20]"
 
 @export var economyStatusLabel : RichTextLabel;
-const ECONOMY_STATUS_BBCODE : String = "[center][outline_size=10][font_size=50]"
+const ECONOMY_STATUS_BBCODE : String = "[center][outline_size=10][font_size=100]"
 var prevEcoStatus = -1;
 
-const BURSTING_STATUS_TEXT : String = "[color=#ffa408]BURSTING"
-const GOOD_STATUS_TEXT : String = "[color=#5ff04f]GOOD"
-const STABLE_STATUS_TEXT : String = "[color=#7bed09]STABLE"
-const BAD_STATUS_TEXT : String = "[color=#ffa408]BAD"
-const POPPING_STATUS_TEXT : String = "[color=#ff0011]POPPING"
-const POPPED_STATUS_TEXT : String = "[color=#6b0007]POPPED"
+const BURSTING_STATUS_TEXT : String = "[color=#9c131a][pulse color=#eb1722]BURSTING"
+const GOOD_STATUS_TEXT : String = "[color=#31a329][pulse color=#14ed05]GOOD"
+const STABLE_STATUS_TEXT : String = "[color=#9fb832][pulse color=#81ff03]STABLE"
+const BAD_STATUS_TEXT : String = "[color=#ad7417][pulse color=#fc9d00]BAD"
+const POPPING_STATUS_TEXT : String = "[color=#9c131a][pulse color=#eb1722]POPPING"
+const POPPED_STATUS_TEXT : String = "[color=#6b1419][pulse color=#000000]POPPED"
 
 func _ready() -> void:
 	debtCurVal = model.getDebt();
@@ -64,8 +65,8 @@ func setDebt(val : float, immediate : bool = false):
 		if (debtCurVal == val):
 			return
 		musicManager.playMoneySFX(val < debtCurVal);
-		curDebtMoveSpeed = BASE_DEBT_MOVE_SPEED
-		targetDebtValue = val
+		curDebtMoveSpeed = max(BASE_DEBT_MOVE_SPEED, abs(debtCurVal - val) / MAX_TIME_TO_MOVE_DEBT)
+		targetDebtValue = max(val, 0)
 		usingTargetDebtVal = true;
 		await finishedUpdatingDebtSignal
 

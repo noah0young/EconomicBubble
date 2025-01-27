@@ -59,7 +59,7 @@ func readEffectDB(name: String):
 				var addToEconomyByRound : Array[float] = [];
 				for i in range(0, addToEconomyByRoundAsStr.size()):
 					addToEconomyByRound.append(float(addToEconomyByRoundAsStr[i]))
-				if (effect.size() == 4):
-					var noteForEachRound = effect[3].split(",")
+				if (effect.size() >= 4):
+					var noteForEachRound = effect[4].split(",")
 					return EcoEffect.new(int(effect[2]), addToEconomyByRound, noteForEachRound)
 				return EcoEffect.new(int(effect[2]), addToEconomyByRound)

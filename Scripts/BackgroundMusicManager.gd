@@ -72,7 +72,6 @@ func playTalkSound(charID : String):
 		return;
 	if (useWaitTime):
 		if (not isWaitingToTalk):
-			print("Using Wait Time")
 			TypeDefs.playSFX(sfx, self)
 			isWaitingToTalk = true
 			await get_tree().create_timer(MIN_TIME_BETWEEN_TALK_SFX).timeout

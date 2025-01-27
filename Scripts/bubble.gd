@@ -26,7 +26,5 @@ func _process(delta: float) -> void:
 		curScale -= SPEED * delta
 	scale.x = curScale + .2
 	scale.y = curScale + .2
-	scale *= 5; # DEBUG
-	print(scale)
 	bubState =  gameModel.getEcoState()
 	ui.setEcoBubbleStatus(bubState)
