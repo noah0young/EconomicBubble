@@ -51,6 +51,7 @@ func apply(model : GameModel) -> void:
 ## Gets the note for this round from this effect
 ## Returns an empty string if there is no note
 func getNote() -> String:
+	print("Using getNote")
 	if (won):
 		return winNote
 	else:

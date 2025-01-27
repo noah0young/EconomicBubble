@@ -25,27 +25,30 @@ var currentPrompt: EcoPrompt
 @export var replyHolder : HBoxContainer;
 var replyButtonPrefab = preload("res://Scenes/reply_prefab.tscn")
 var curReplies : Array[Button] = [];
+const REPLY_TOOLTIP_CHARS : int = 50
 
 @export var economyBalance : float = 500;
-@export var debt : float = 100;
+const DEBT_START_AMOUNT = 1000000;
+@export var debt : float = 0;
 @export var promptTextBox : RichTextLabel;
 const PROMPT_TEXT_BBCODE : String = "[font_size={50}][center]"
 const TIME_BETWEEN_CHAR : float = 0.05
 var effects : Array[AbstractEcoEffect];
 
 func _ready():
-	await uiManager.setDebt(getDebt(), true);
+	uiManager.setDebt(getDebt(), true);
+	effects.append(EcoEffect.new(DEBT_START_AMOUNT, [0], ["Congratulations on your new job... but you're college degree has put you in debt... a lot of debt"]))
+	effects.append(EcoEffect.new(0, [0], ["But at least your job puts you in charge of the Economic (bubble)"]))
+	effects.append(EcoEffect.new(0, [0], ["... Would anyone notice if some money were to disappear ...?"]))
+	await endRound(true)
 
-func nextRound():
-	musicManager.setTargetVolFade(isGoingPoorly(), DAY_TRANS_VOL);
-	roundNum += 1;
-	# Show Day Count Here in screen animation
-	await animManager.playDayStartAnim(roundNum)
-	musicManager.startMusic(isGoingPoorly());
-	# Show News in screen animation
-	await allNews();
-	getPrompt()
-	showPrompt()
+func incrementEffectRound():
+	for i in range(effects.size() - 1, -1, -1):
+		print("incrementEffectRound" + str(i))
+		var effect = effects[i]
+		effect.nextTurn();
+		if (effect.isDone()):
+			effects.remove_at(i) # do you need to free a resource?
 
 func isGoingPoorly() -> bool:
 	return economyBalance < BAD_ECO_THRESHOLD or economyBalance > BURSTING_ECO_THRESHOLD
@@ -125,32 +128,42 @@ func addEffect(effect : AbstractEcoEffect) -> void:
 func getRoundNotes() -> Array[String]:
 	var noteArray : Array[String] = []
 	for effect in effects:
-		noteArray.append(effect.getNote())
+		var note = effect.getNote()
+		if (note != ""):
+			noteArray.append(note)
 	return noteArray;
 
-func endRound() -> void:
-	await animManager.playHideUIPrompt()
-	clearPromptText();
-	clearReplies();
+func endRound(initialTime : bool = false) -> void:
+	if (not initialTime):
+		await animManager.playHideUIPrompt()
+		clearPromptText();
+		clearReplies();
 	await uiManager.setDebt(getDebt());
 	for i in range(effects.size() - 1, -1, -1):
-		print("Applying Effect [" + str(i) + "]");
 		var effect = effects[i]
-		print("effect:")
-		print(effect)
 		effect.apply(self);
-		effect.nextTurn();
-		if (effect.isDone()):
-			effects.remove_at(i) # do you need to free a resource?
 	economyBalance = max(min(economyBalance, MAX_ECONOMY), MIN_ECONOMY)
-	print("Round End")
-	print("debt:")
-	print(debt);
-	print("economyBalance:")
-	print(economyBalance);
+	nextRound()
+
+func nextRound():
+	musicManager.setTargetVolFade(isGoingPoorly(), DAY_TRANS_VOL);
+	roundNum += 1;
+	# Show Day Count Here in screen animation
+	await animManager.playDayStartAnim(roundNum)
+	musicManager.startMusic(isGoingPoorly());
+	# Show News in screen animation
+	await allNews();
+	
+	# this line is just for the first round, when you see your initial debt appear
+	await uiManager.setDebt(getDebt(), false);
+	
+	incrementEffectRound()
 	if (!isGameOver()):
-		nextRound()
+		# continue game
+		getPrompt()
+		showPrompt()
 	else:
+		# finish game
 		showGameOver()
 
 func addToDebt(val : float) -> void:
@@ -165,6 +178,7 @@ func isGameOver() -> bool:
 func showGameOver() -> void:
 	# Updates music
 	musicManager.startMusic(isGoingPoorly());
+	TypeDefs.playSFX(TypeDefs.bubblePopSFX, self)
 	if (debt <= 0):
 		animManager.playWinAnim();
 	else:
@@ -172,11 +186,11 @@ func showGameOver() -> void:
 
 func addReply(reply : Reply):
 	var newReply : Button = replyButtonPrefab.instantiate()
-	newReply.text = reply.text;
+	#uiManager.setReplyText(newReply.get_node("RichTextLabel"), reply.text);
+	newReply.tooltip_text = TypeDefs.limitLinesTo(REPLY_TOOLTIP_CHARS, reply.text)
 	curReplies.append(newReply);
 	newReply.pressed.connect(
 		func ():
-		print("Press")
 		addEffect(reply.getEffect())
 		endRound()
 		)

@@ -22,7 +22,8 @@ func _init(addToDebt : int, addToEconomyByRound : Array[float],
 func apply(model : GameModel) -> void:
 	if (turnsPassed == 0):
 		model.addToDebt(addToDebt);
-	model.addToEconomy(addToEconomyByRound[turnsPassed]);
+	if (addToEconomyByRound.size() > 0):
+		model.addToEconomy(addToEconomyByRound[turnsPassed]);
 
 ## Gets the note for this round from this effect
 ## Returns an empty string if there is no note

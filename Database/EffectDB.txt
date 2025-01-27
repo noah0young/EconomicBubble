@@ -17,7 +17,7 @@ KEEPPAYEFFECT|ECOEFFECT|-20|0|Payed off 20$ of debt.
 INVESTPAYEFFECT|ECOEFFECT|0|1|Economy is up by a little.
 LOBBYEFFECT|ECOEFFECT|-50000|-100|Economy is down by a lot but $50000 is $50000.
 NOLOBBYEFFECT|ECOEFFECT|0|0|No money in no money out.
-STEALEFFECT|ECOEFFECT|-300000|-600|Economy is down by a shit ton! You made $300,000.
+STEALEFFECT|ECOEFFECT|-300000|-600|Economy is down by a shit ton! You made $300000.
 NOSTEALEFFECT|ECOEFFECT|0|50|Economy went up naturally by a bit!
 WARBUBBLESEFFECT|ECOEFFECT|-1000|100|Mr. Bubbles pays you for your effort and the economy goes up a lot due to war time industrialization.
 NOWARBUBBLESEFFECT|ECOEFFECT|0|0|No money in no money out.

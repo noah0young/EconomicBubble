@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://y1gbyju2vja8"]
+[gd_scene load_steps=43 format=3 uid="uid://y1gbyju2vja8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_expxs"]
 [ext_resource type="Texture2D" uid="uid://bcxecpq0q58mv" path="res://Art/BG/BG-1.png" id="1_nb66x"]
@@ -10,10 +10,16 @@
 [ext_resource type="Script" path="res://Scripts/ButtonFX.gd" id="7_eupm5"]
 [ext_resource type="Texture2D" uid="uid://c4322nvfmm02u" path="res://icon.svg" id="7_lxp5v"]
 [ext_resource type="Script" path="res://Scripts/GameModel.gd" id="8_eis76"]
+[ext_resource type="Texture2D" uid="uid://c73ttimkm5d4l" path="res://Art/Bubble/Untitled_Artwork-1.png" id="8_kr7g5"]
 [ext_resource type="Script" path="res://Scripts/AnimManager.gd" id="9_5hjtg"]
+[ext_resource type="Script" path="res://Scripts/bubble.gd" id="9_fjgqc"]
+[ext_resource type="Texture2D" uid="uid://cgf5tk58n8ns2" path="res://Art/Bubble/Untitled_Artwork-2.png" id="9_lnhdf"]
+[ext_resource type="Script" path="res://Scripts/StartAnimPlayer.gd" id="10_8n4im"]
 [ext_resource type="AudioStream" uid="uid://bq7arm3083sm6" path="res://Music/Lighter Theme.wav" id="11_fcd6k"]
 [ext_resource type="Script" path="res://Scripts/BackgroundMusicManager.gd" id="11_ug56f"]
 [ext_resource type="AudioStream" uid="uid://st8i4p0opih1" path="res://Music/Darker Theme.wav" id="12_a8u76"]
+[ext_resource type="Texture2D" uid="uid://bdyt4dgv77rca" path="res://Art/Endings/Survive.png" id="12_t7osh"]
+[ext_resource type="Texture2D" uid="uid://46t3x7qelm7s" path="res://Art/Endings/Ending2.png" id="13_noik3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhbbb"]
 animations = [{
@@ -45,6 +51,67 @@ animations = [{
 "name": &"idle",
 "speed": 12.0
 }]
+
+[sub_resource type="Animation" id="Animation_jg3k3"]
+resource_name = "EcoBubbleAnim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EconomyBubble/EconomyBubbleSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_kr7g5"), ExtResource("9_lnhdf"), ExtResource("8_kr7g5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EconomyBubble/EconomyBubbleSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5.2, 4.8), Vector2(4.8, 5.2), Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_rfx1k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EconomyBubble/EconomyBubbleSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_kr7g5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EconomyBubble/EconomyBubbleSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5.5, 4.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nuak"]
+_data = {
+"EcoBubbleAnim": SubResource("Animation_jg3k3"),
+"RESET": SubResource("Animation_rfx1k")
+}
 
 [sub_resource type="Animation" id="Animation_hkhmu"]
 length = 0.001
@@ -297,7 +364,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_oayob"]
 resource_name = "Lose"
-length = 3.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -305,10 +372,10 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.792157, 0, 0.2, 0), Color(0.793719, 0, 0.198248, 1), Color(0.793719, 0, 0.198248, 1)]
+"values": [Color(0.792157, 0, 0.2, 0), Color(0.792157, 0, 0.2, 0), Color(0.793719, 0, 0.198248, 1), Color(0.793719, 0, 0.198248, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -317,10 +384,10 @@ tracks/1/path = NodePath("LoseTextLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -333,6 +400,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ending2:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_m47mx"]
@@ -385,10 +464,34 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ending2:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ending1:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_xv0e8"]
 resource_name = "Win"
-length = 3.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -396,10 +499,10 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0.788235, 0.231373, 0), Color(0, 0.788235, 0.231373, 1), Color(0, 0.788235, 0.231373, 1)]
+"values": [Color(0, 0.788235, 0.231373, 0), Color(0, 0.788235, 0.231373, 0), Color(0, 0.788235, 0.231373, 1), Color(0, 0.788235, 0.231373, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -408,10 +511,10 @@ tracks/1/path = NodePath("WinTextLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -424,6 +527,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ending1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gpj4h"]
@@ -493,7 +608,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false]
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_152sc"]
@@ -545,6 +660,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_qsodk"]
@@ -757,7 +884,45 @@ follow_viewport_enabled = true
 sprite_frames = SubResource("SpriteFrames_vhbbb")
 animation = &"flicker"
 
-[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("model", "debtValueLabel")]
+[node name="EconomyBubbleHolder" type="Node2D" parent="CanvasLayer/Background"]
+position = Vector2(63, 159)
+
+[node name="EconomyBubble" type="Node2D" parent="CanvasLayer/Background/EconomyBubbleHolder" node_paths=PackedStringArray("ui", "gameModel")]
+position = Vector2(-557, -157)
+scale = Vector2(0.285, 0.5)
+script = ExtResource("9_fjgqc")
+ui = NodePath("../../UI")
+gameModel = NodePath("../../../../GameModel")
+
+[node name="EconomyBubbleSprite" type="Sprite2D" parent="CanvasLayer/Background/EconomyBubbleHolder/EconomyBubble"]
+scale = Vector2(5.5, 4.5)
+texture = ExtResource("8_kr7g5")
+
+[node name="StatusTitle" type="RichTextLabel" parent="CanvasLayer/Background/EconomyBubbleHolder"]
+offset_left = -746.0
+offset_top = -250.0
+offset_right = -246.0
+offset_bottom = -150.0
+bbcode_enabled = true
+text = "[dropcap font_size=50
+ outline_size=black outline_size=10]Economy Bubble:"
+
+[node name="StatusValueLabel" type="RichTextLabel" parent="CanvasLayer/Background/EconomyBubbleHolder"]
+offset_left = -843.0
+offset_top = -178.0
+offset_right = -239.0
+offset_bottom = 19.0
+bbcode_enabled = true
+text = "[center][outline_size=10][font_size=100][color=#9fb832][pulse color=#81ff03]STABLE"
+
+[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Background/EconomyBubbleHolder"]
+libraries = {
+"": SubResource("AnimationLibrary_2nuak")
+}
+script = ExtResource("10_8n4im")
+animName = "EcoBubbleAnim"
+
+[node name="UI" type="Control" parent="CanvasLayer/Background" node_paths=PackedStringArray("musicManager", "model", "debtValueLabel", "economyStatusLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -765,8 +930,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_aq7d8")
+musicManager = NodePath("../../../BackgroundMusic")
 model = NodePath("../../../GameModel")
 debtValueLabel = NodePath("ColorRect/DebtValueLabel")
+economyStatusLabel = NodePath("../EconomyBubbleHolder/StatusValueLabel")
 
 [node name="Control" type="Control" parent="CanvasLayer/Background/UI"]
 layout_mode = 1
@@ -816,10 +983,10 @@ libraries = {
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/UI"]
 layout_mode = 0
-offset_left = 410.0
-offset_top = -302.0
-offset_right = 856.0
-offset_bottom = -102.0
+offset_left = 506.0
+offset_top = -90.0
+offset_right = 952.0
+offset_bottom = 110.0
 
 [node name="DebtTitleLabel" type="RichTextLabel" parent="CanvasLayer/Background/UI/ColorRect"]
 layout_mode = 1
@@ -908,6 +1075,26 @@ offset_bottom = -540.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Ending1" type="TextureRect" parent="CanvasLayer/Background/WinLoseOverlay"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_t7osh")
+
+[node name="Ending2" type="TextureRect" parent="CanvasLayer/Background/WinLoseOverlay"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_noik3")
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/WinLoseOverlay"]
 z_as_relative = false
 layout_mode = 1
@@ -958,7 +1145,6 @@ libraries = {
 }
 
 [node name="NewsOverlay" type="Control" parent="CanvasLayer/Background"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -971,6 +1157,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background/NewsOverlay"]
+modulate = Color(1, 1, 1, 0)
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
@@ -981,6 +1168,7 @@ grow_vertical = 2
 color = Color(0.16593, 0.130564, 0.131203, 1)
 
 [node name="NewsTitle" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -995,6 +1183,7 @@ fit_content = true
 scroll_active = false
 
 [node name="NewsText" type="RichTextLabel" parent="CanvasLayer/Background/NewsOverlay"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -1009,6 +1198,7 @@ fit_content = true
 scroll_active = false
 
 [node name="NewsContButton" type="Button" parent="CanvasLayer/Background/NewsOverlay"]
+visible = false
 layout_mode = 0
 offset_left = 652.0
 offset_top = 861.0
@@ -1032,6 +1222,7 @@ scale = Vector2(2, 2)
 zoom = Vector2(0.6, 0.6)
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-43, 6)
 texture = ExtResource("7_lxp5v")
 

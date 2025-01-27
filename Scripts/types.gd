@@ -30,6 +30,7 @@ static var possibleCheeseManSFX : Array[AudioStream] = [
 	preload("res://SFX/Cheese Man 3.wav")
 ]
 
+static var bubblePopSFX = preload("res://SFX/Bubble Pop.wav")
 static var moneyUpSFX = preload("res://SFX/Money Up.wav")
 static var moneyDownSFX = preload("res://SFX/Money Down.wav")
 
@@ -52,3 +53,11 @@ static func playSFX(sfx : AudioStream, referenceObj : Node):
 	player.play();
 	await player.finished
 	player.queue_free()
+
+static func limitLinesTo(charLimit : int, text : String):
+	var res = ""
+	while (text.length() > 0):
+		var taken : int = min(charLimit, text.length());
+		res += text.substr(0, taken) + "\n"
+		text = text.substr(taken)
+	return res
